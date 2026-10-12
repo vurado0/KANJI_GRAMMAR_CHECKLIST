@@ -34,6 +34,9 @@ header p{color:var(--muted);margin:6px 0 0;max-width:60ch}
 .tab{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 14px;border-radius:999px;cursor:pointer}
 .tab[aria-pressed="true"]{background:var(--ai);border-color:var(--ai);color:var(--bg)}
 .tab:focus-visible,.chk:focus-visible+label,.tool:focus-visible,input[type=search]:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.practice{margin-left:auto;font:600 14px var(--f-body);text-decoration:none;color:var(--shu);border:1px solid var(--shu);background:var(--surface);padding:7px 14px;border-radius:999px;white-space:nowrap}
+.practice:hover{background:var(--shu);color:var(--surface)}
+.practice:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 input[type=search]{flex:1 1 200px;min-width:0;font:15px var(--f-body);padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
 .tool{font:500 13px var(--f-body);background:none;border:1px solid var(--line);color:var(--muted);padding:7px 12px;border-radius:8px;cursor:pointer}
@@ -84,6 +87,7 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
       <button class="tab" id="t-all" data-lv="all" aria-pressed="true">All</button>
       <button class="tab" id="t-n5" data-lv="N5" aria-pressed="false">N5</button>
       <button class="tab" id="t-n4" data-lv="N4" aria-pressed="false">N4</button>
+      <a class="practice" href="n5-open-points.html">Practice N5 gaps →</a>
     </div>
     <div class="tools">
       <input type="search" id="q" placeholder="Search: ても, passive, because…" aria-label="Search grammar points">
