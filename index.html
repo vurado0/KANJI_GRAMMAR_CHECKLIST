@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JLPT N5 & N4 Grammar Checklist</title>
+<title>Bunpou Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -11,23 +11,25 @@
 /* Layout: one narrow study column; sticky level switcher + progress; grouped checklists like a 問題集 */
 :root{
   --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2030; --muted:#5c6478; --line:#dde1ea;
-  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d; --done:#8a91a3;
+  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d; --murasaki:#6a3d8f; --moegi:#3d7a4f; --done:#8a91a3;
   --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --f-body:"IBM Plex Sans","Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
   --f-jp:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
-  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --done:#6b7285; color-scheme:dark}}
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --murasaki:#c19be6; --moegi:#7cc493; --done:#6b7285; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
-  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --done:#6b7285; color-scheme:dark}
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --murasaki:#c19be6; --moegi:#7cc493; --done:#6b7285; color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
 .wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
 header h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:0;letter-spacing:.01em;text-wrap:balance}
 header h1 span{color:var(--shu)}
+header h1 .lv4{color:var(--ai)} header h1 .lv3{color:var(--murasaki)} header h1 .lv2{color:var(--moegi)}
+header h1 .sep{color:var(--muted);margin:0 .15em}
 header p{color:var(--muted);margin:6px 0 0;max-width:60ch}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 12px;margin-top:18px;border-bottom:1px solid var(--line);display:grid;gap:12px}
 .tabs{display:flex;gap:6px;flex-wrap:wrap}
@@ -53,13 +55,16 @@ nav.site a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
 input[type=search]{flex:1 1 200px;min-width:0;font:15px var(--f-body);padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
 .tool{font:500 13px var(--f-body);background:none;border:1px solid var(--line);color:var(--muted);padding:7px 12px;border-radius:8px;cursor:pointer}
 .tool[aria-pressed="true"]{color:var(--ai);border-color:var(--ai)}
-.prog{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.prog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.prog{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .p{display:grid;gap:4px}
 .p .lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .p .lbl b{color:var(--fg);font-weight:600}
 .track{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 .fill{height:100%;background:var(--ai);width:0;transition:width .3s}
 .p.n5 .fill{background:var(--shu)}
+.p.n3 .fill{background:var(--murasaki)}
+.p.n2 .fill{background:var(--moegi)}
 @media (prefers-reduced-motion:reduce){.fill{transition:none}}
 .level{margin-top:30px}
 .level>h2{font-family:var(--f-display);font-weight:800;font-size:1.5rem;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
@@ -90,15 +95,15 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
 
 <div class="wrap">
   <nav class="site" aria-label="Site">
-    <a href="./" aria-current="page">N5 · N4 checklist</a>
+    <a href="./" aria-current="page">Bunpou checklist</a>
     <a href="conjugations.html">Verb conjugation</a>
     <a href="n5-open-points.html" class="done" title="Done"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
     <a href="n4-open-points.html" class="done" title="Done"><s>N4 gaps</s><span class="tick" aria-label="done">✓</span></a>
-    <a href="n3-checklist.html">N3 checklist</a>
+    <a href="n3-open-points.html">N3 gaps</a>
   </nav>
   <header>
-    <h1>文法チェックリスト <span>N5 · N4</span></h1>
-    <p>Every grammar point from the two stories (京都の一日 and 大阪の新しい生活). Tick a point once you can use it in your own sentence.</p>
+    <h1>文法チェックリスト <span class="lv5">N5</span><span class="sep">·</span><span class="lv4">N4</span><span class="sep">·</span><span class="lv3">N3</span><span class="sep">·</span><span class="lv2">N2</span></h1>
+    <p>All JLPT grammar from N5 to N2 in one list. Tick a point once you can use it in your own sentence, then close the gaps before moving up a level.</p>
   </header>
 
   <div class="bar">
@@ -106,10 +111,12 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
       <button class="tab" id="t-all" data-lv="all" aria-pressed="true">All</button>
       <button class="tab" id="t-n5" data-lv="N5" aria-pressed="false">N5</button>
       <button class="tab" id="t-n4" data-lv="N4" aria-pressed="false">N4</button>
+      <button class="tab" id="t-n3" data-lv="N3" aria-pressed="false">N3</button>
+      <button class="tab" id="t-n2" data-lv="N2" aria-pressed="false">N2</button>
       <div class="practice-group">
         <a class="practice done" href="n5-open-points.html" title="Done"><s>Practice N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
         <a class="practice done" href="n4-open-points.html" title="Done"><s>Practice N4 gaps</s><span class="tick" aria-label="done">✓</span></a>
-        <a class="practice" href="n3-checklist.html">Start N3 →</a>
+        <a class="practice" href="n3-open-points.html">Practice N3 gaps →</a>
       </div>
     </div>
     <div class="tools">
@@ -119,6 +126,8 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
     <div class="prog">
       <div class="p n5"><div class="lbl"><b>N5</b><span id="c-N5">0 / 0</span></div><div class="track"><div class="fill" id="f-N5"></div></div></div>
       <div class="p n4"><div class="lbl"><b>N4</b><span id="c-N4">0 / 0</span></div><div class="track"><div class="fill" id="f-N4"></div></div></div>
+      <div class="p n3"><div class="lbl"><b>N3</b><span id="c-N3">0 / 0</span></div><div class="track"><div class="fill" id="f-N3"></div></div></div>
+      <div class="p n2"><div class="lbl"><b>N2</b><span id="c-N2">0 / 0</span></div><div class="track"><div class="fill" id="f-N2"></div></div></div>
     </div>
   </div>
 
@@ -285,14 +294,271 @@ N4: {
   ["〜たほうがいい","you'd better","大きくしたほうがいい"],
   ["Honorific / humble","おっしゃる / お〜する","おっしゃいました / お作りします"]
  ]
-}};
+},
+N3: {
+ "Time & sequence": [
+  ["〜うちに","while (before it changes / ends)","若いうちに、いろいろな国に行きたい。"],
+  ["〜最中に","right in the middle of","会議の最中に電話が鳴った。"],
+  ["〜たとたん(に)","the moment that","家を出たとたん、雨が降り出した。"],
+  ["〜ところに / ところへ","just as (something interrupts)","出かけようとしたところに、友達が来た。"],
+  ["〜次第","as soon as","準備ができ次第、出発します。"],
+  ["〜てからでないと","not until, only after","説明を聞いてからでないと、決められない。"],
+  ["〜てはじめて","only after … (realised)","病気になってはじめて、健康の大切さが分かった。"],
+  ["〜以来","ever since","日本に来て以来、ずっと東京に住んでいる。"],
+  ["〜たびに","every time","この写真を見るたびに、昔を思い出す。"],
+  ["〜ついでに","while you're at it","散歩のついでに、パンを買ってきた。"],
+  ["〜かけ","half-done, started but not finished","読みかけの本が机の上にある。"],
+  ["〜つつある","in the process of, gradually","町は少しずつ変わりつつある。"],
+  ["〜ばかりだ","keeps getting (worse)","物価は上がるばかりだ。"]
+ ],
+ "Cause & result": [
+  ["〜ため(に) (cause)","because of (formal)","事故のため、電車が遅れた。"],
+  ["〜せいで","because of (blame)","寝坊したせいで、遅刻した。"],
+  ["〜せいか","perhaps because","年のせいか、最近疲れやすい。"],
+  ["〜おかげで","thanks to","先生のおかげで、合格できました。"],
+  ["〜からこそ","precisely because","好きだからこそ、厳しく言うのだ。"],
+  ["〜ものだから / もので","because (excuse)","電車が遅れたものですから、遅くなりました。"],
+  ["〜によって","depending on, by, due to","国によって習慣が違う。"],
+  ["〜わけだ","no wonder, that means","十年住んでいたのか。上手なわけだ。"],
+  ["〜わけではない","it doesn't mean that","嫌いなわけではないが、あまり食べない。"],
+  ["〜わけがない","there's no way","あんなに練習したんだから、負けるわけがない。"],
+  ["〜わけにはいかない","can't (for social reasons)","明日は試験だから、休むわけにはいかない。"]
+ ],
+ "Conditions & concession": [
+  ["〜ば〜ほど","the more … the more","練習すればするほど、上手になる。"],
+  ["〜さえ〜ば","if only, as long as","時間さえあれば、もっと旅行したい。"],
+  ["〜としたら / とすれば","supposing that","宝くじが当たったとしたら、何をしますか。"],
+  ["〜としても","even if (supposing)","今から行ったとしても、間に合わないだろう。"],
+  ["たとえ〜ても","even if","たとえ雨が降っても、行きます。"],
+  ["〜くせに","even though (criticism)","知っているくせに、教えてくれない。"],
+  ["〜にもかかわらず","despite","雨にもかかわらず、たくさんの人が来た。"],
+  ["〜からといって","just because … doesn't mean","高いからといって、いい物とは限らない。"],
+  ["〜とは限らない","not necessarily","日本人がみんな寿司が好きだとは限らない。"],
+  ["〜ないことはない","it's not that … not","食べられないことはないが、好きではない。"],
+  ["〜ところだった","almost happened","もう少しで車にぶつかるところだった。"],
+  ["〜ばいいのに","I wish … would","もっと早く言えばいいのに。"]
+ ],
+ "Degree & comparison": [
+  ["〜ほど / くらい","to the extent that","泣きたいくらい嬉しかった。"],
+  ["〜ほど〜ない","not as … as","今年の夏は去年ほど暑くない。"],
+  ["〜ほど〜はない","nothing is as … as","家族ほど大切なものはない。"],
+  ["〜に比べて","compared to","去年に比べて、雨が多い。"],
+  ["〜わりに","considering, for","この店は安いわりに、おいしい。"],
+  ["〜にしては","for (unexpectedly)","初めてにしては、上手ですね。"],
+  ["〜っぽい","-ish, seems like","この服はちょっと子供っぽい。"],
+  ["〜がち","tend to (bad)","冬は風邪をひきがちだ。"],
+  ["〜気味","slightly, a touch of","最近、疲れ気味です。"],
+  ["〜だらけ","full of, covered in","部屋がごみだらけだ。"],
+  ["〜さえ / すら","even","忙しくて、水を飲む時間さえない。"],
+  ["〜こそ","this very, precisely","今年こそ、N3に合格したい。"],
+  ["〜だけでなく / ばかりでなく","not only … but also","彼は英語だけでなく、中国語も話せる。"],
+  ["〜うえ(に)","on top of that","この店は安いうえに、おいしい。"],
+  ["〜に加えて","in addition to","雨に加えて、風も強くなってきた。"],
+  ["〜に限る","nothing beats","疲れた時は、寝るに限る。"]
+ ],
+ "Topic & viewpoint": [
+  ["〜について","about","日本の文化について調べた。"],
+  ["〜に関して","regarding (formal)","この件に関して、質問があります。"],
+  ["〜にとって","for (from the view of)","私にとって、家族が一番大切だ。"],
+  ["〜として","as (a role)","留学生として日本に来た。"],
+  ["〜に対して","towards; in contrast to","先生に対して失礼なことを言ってしまった。"],
+  ["〜といえば / というと","speaking of","日本といえば、富士山ですね。"],
+  ["〜って (topic)","casual は, \"as for\"","田中さんって、優しいね。"],
+  ["〜とは / 〜というのは","the definition of","「積ん読」とは、買った本を読まずにためておくことだ。"],
+  ["〜からすると","judging from","彼の顔からすると、怒っているようだ。"],
+  ["〜をはじめ","starting with, including","東京をはじめ、大きな町はどこも人が多い。"],
+  ["〜を中心に","centred on","若者を中心に人気がある。"],
+  ["〜に代わって","in place of, on behalf of","社長に代わって、私がご挨拶します。"],
+  ["〜向け / 〜向き","aimed at / suited to","子供向けの本。この仕事は彼に向いている。"]
+ ],
+ "Change & proportion": [
+  ["〜につれて","as (gradual change)","時間がたつにつれて、悲しみも消えていった。"],
+  ["〜にしたがって","as, in line with","上に行くにしたがって、寒くなる。"],
+  ["〜とともに","together with; as","年をとるとともに、体力が落ちる。"],
+  ["〜一方(で)","while, on the other hand","便利になった一方で、問題も増えた。"],
+  ["〜かわりに","instead of; in exchange","手伝うかわりに、昼ご飯をおごってね。"]
+ ],
+ "Judgment & certainty": [
+  ["〜べきだ / べきではない","should / shouldn't","約束は守るべきだ。"],
+  ["〜に違いない","must be, no doubt","電気がついている。家にいるに違いない。"],
+  ["〜に決まっている","surely, of course","そんな話、嘘に決まっている。"],
+  ["〜はずがない","there's no way that","彼が嘘をつくはずがない。"],
+  ["〜おそれがある","there's a risk of","台風が来るおそれがある。"],
+  ["〜ことはない","there's no need to","心配することはないよ。"],
+  ["〜しかない","have no choice but","終電がないから、歩いて帰るしかない。"],
+  ["〜ないわけにはいかない","have to (can't not)","招待されたから、行かないわけにはいかない。"],
+  ["〜ようがない","no way to","連絡先が分からないので、連絡しようがない。"],
+  ["〜ものだ","naturally; used to (nostalgia)","子供の頃は、よくここで遊んだものだ。"],
+  ["〜ことだ","the best thing is to (advice)","上手になりたければ、毎日練習することだ。"],
+  ["〜てしょうがない / てたまらない","unbearably","暑くてたまらない。"]
+ ],
+ "Appearance, hearsay & feeling": [
+  ["〜ように見える","looks like, seems","彼は疲れているように見える。"],
+  ["〜気がする","have a feeling that","前にどこかで会ったような気がする。"],
+  ["〜げ","seeming, with an air of","彼女は寂しげな顔をしていた。"],
+  ["〜ふりをする","pretend to","弟は寝ているふりをした。"],
+  ["〜ということだ","I heard; that means","明日の会議は中止だということだ。"],
+  ["〜とか (hearsay)","I heard something like","来週、雪が降るとか。"],
+  ["〜という + noun","called, the fact that","「さくら」という店を知っていますか。"],
+  ["〜なんて","such a thing as (surprise)","彼が結婚するなんて、信じられない。"],
+  ["〜なんか / など","things like (modest, dismissive)","私なんか、まだまだです。"],
+  ["〜っけ","was it …? (recalling)","会議は何時からだっけ？"]
+ ],
+ "Actions & attempts": [
+  ["〜ようとする","try to; be about to","ドアを開けようとしたが、開かなかった。"],
+  ["〜ようとしない","refuse to, won't","子供が野菜を食べようとしない。"],
+  ["〜させてください / させていただく","let me (humble)","この仕事は私にやらせてください。"],
+  ["〜てもらいたい","want someone to","一度会ってもらいたい人がいる。"],
+  ["〜ように言う / 頼む","tell / ask someone to","先生は静かにするように言った。"],
+  ["〜てばかりいる","do nothing but","弟はゲームをしてばかりいる。"],
+  ["〜っぱなし","leave as is (left on)","電気をつけっぱなしにしてしまった。"],
+  ["〜きる","do completely","一日で本を読みきった。"],
+  ["〜だす","suddenly start","急に雨が降りだした。"],
+  ["〜合う","do to each other","二人は助け合っている。"],
+  ["〜ずに済む / ないで済む","get by without","友達が手伝ってくれたので、お金を払わずに済んだ。"]
+ ],
+ "Written & casual style": [
+  ["〜である","is (written style)","日本は島国である。"],
+  ["〜ず(に) (written)","without, not (written)","何も言わず、部屋を出ていった。"],
+  ["〜ちゃう / じゃう","casual てしまう","ケーキ、全部食べちゃった。"],
+  ["〜とく","casual ておく","レストラン、予約しとくね。"],
+  ["〜なきゃ / なくちゃ","casual must","もう行かなきゃ。"],
+  ["〜って (quote)","casual と言っていた","明日、休みだって。"]
+ ]
+},
+N2: {
+ "Time & occasion": [
+  ["〜うえで","after doing; in doing","契約書をよく読んだうえで、サインしてください。"],
+  ["〜てからというもの","ever since (a big change)","彼女に出会ってからというもの、毎日が楽しい。"],
+  ["〜か〜ないかのうちに","barely, the instant","ベルが鳴るか鳴らないかのうちに、学生は教室を出た。"],
+  ["〜際(に)","when, on the occasion of (formal)","お降りの際は、足元にご注意ください。"],
+  ["〜に際して","on the occasion of","留学に際して、多くの人にお世話になった。"],
+  ["〜にあたって","at the time of, when starting","新年を迎えるにあたって、目標を立てた。"],
+  ["〜に先立って","prior to","試合に先立って、開会式が行われた。"],
+  ["〜をきっかけに","triggered by","旅行をきっかけに、日本語を勉強し始めた。"],
+  ["〜を契機に","taking the opportunity of (formal)","入社を契機に、一人暮らしを始めた。"],
+  ["〜たきり","since then (nothing changed)","彼は朝出かけたきり、まだ帰ってこない。"],
+  ["〜ところを","while you are (polite)","お忙しいところを、ありがとうございます。"],
+  ["〜をもって","as of; by means of","本日をもって、閉店いたします。"],
+  ["〜ぶり","for the first time in; way of doing","三年ぶりに国に帰った。"]
+ ],
+ "Cause & reason": [
+  ["〜ばかりに","just because (bad result)","嘘をついたばかりに、信用を失った。"],
+  ["〜あまり","so much that","緊張のあまり、声が出なかった。"],
+  ["〜だけに","precisely because, as expected","高かっただけに、品質がいい。"],
+  ["〜からには","now that, since","約束したからには、守らなければならない。"],
+  ["〜以上(は) / 上は","since, now that","引き受けた以上、最後までやる。"],
+  ["〜ことから","from the fact that","富士山が見えることから、この町は富士見町と呼ばれる。"],
+  ["〜ことだから","knowing X, being X","真面目な彼のことだから、遅れずに来るだろう。"],
+  ["〜ゆえ(に)","because (formal, written)","若さゆえの失敗もある。"],
+  ["〜につき","due to (notices)","工事中につき、通行止め。"],
+  ["〜おかげで / せいで (review)","thanks to / because of","友達のおかげで、引っ越しが早く終わった。"]
+ ],
+ "Conditions & concession": [
+  ["〜ものなら","if at all possible; if you dare","できるものなら、もう一度やり直したい。"],
+  ["〜ようものなら","if (something bad would follow)","遅刻しようものなら、先生にひどく叱られる。"],
+  ["〜かぎり(は)","as long as","生きているかぎり、あきらめない。"],
+  ["〜ないかぎり","unless","雨が降らないかぎり、試合は行われる。"],
+  ["〜にしても / にしろ / にせよ","even if; whether … or","行くにしても行かないにしても、連絡してください。"],
+  ["〜ながら(も)","although","狭いながらも、楽しい我が家。"],
+  ["〜つつ(も)","although, while","体に悪いと知りつつも、タバコをやめられない。"],
+  ["〜ものの","although, but","買ったものの、一度も使っていない。"],
+  ["〜といっても","even though I say","料理ができるといっても、簡単なものだけです。"],
+  ["〜とはいえ","even so, that said","春とはいえ、まだ寒い。"],
+  ["〜をよそに","ignoring, in spite of","親の心配をよそに、彼は一人で旅に出た。"],
+  ["〜もかまわず","without caring about","人目もかまわず、泣き出した。"],
+  ["〜を問わず","regardless of","年齢を問わず、誰でも参加できる。"],
+  ["〜にかかわらず","regardless of (either way)","天候にかかわらず、試合は行われる。"],
+  ["〜ようでは","if (it goes like this, it's bad)","こんなミスをするようでは、まだまだだ。"],
+  ["〜ばそれまでだ","if …, that's the end of it","いくら勉強しても、試験の日に寝坊すればそれまでだ。"],
+  ["〜くらいなら","rather than","あんな人に頼むくらいなら、自分でやる。"]
+ ],
+ "Addition & limitation": [
+  ["〜ばかりか","not only … but even","彼は遅刻したばかりか、宿題も忘れた。"],
+  ["〜のみならず","not only (formal)","日本のみならず、海外でも人気がある。"],
+  ["〜はもとより / はもちろん","not to mention","英語はもとより、フランス語も話せる。"],
+  ["〜上に (review)","on top of","この部屋は狭い上に、日当たりも悪い。"],
+  ["〜どころか","far from, let alone","休むどころか、ますます忙しくなった。"],
+  ["〜どころではない","no time for, out of the question","忙しくて、旅行どころではない。"],
+  ["〜に過ぎない","merely, nothing more than","それは噂に過ぎない。"],
+  ["〜にほかならない","nothing other than","成功は努力の結果にほかならない。"],
+  ["〜に限り","only, limited to","先着百名様に限り、無料です。"],
+  ["〜きり / っきり","only, just","二人きりで話したい。"],
+  ["〜だけあって","as expected of","さすがプロだけあって、上手だ。"],
+  ["〜ものがある","there is something (that moves you)","彼の歌には人を感動させるものがある。"]
+ ],
+ "Degree & state": [
+  ["〜まみれ","covered in (dirt, sweat)","子供たちは泥まみれになって遊んだ。"],
+  ["〜ずくめ","nothing but, entirely","今年はいいことずくめだった。"],
+  ["〜っぱなし (review)","left on, continuously","一日中立ちっぱなしで、足が痛い。"],
+  ["〜一方だ (review)","keeps (getting worse)","物価は上がる一方だ。"],
+  ["〜ほど / くらい (extent)","to the point that","足が動かなくなるほど歩いた。"],
+  ["〜たて","freshly done","焼きたてのパンはおいしい。"],
+  ["〜がたい","hard to (emotionally)","信じがたい話だ。"],
+  ["〜づらい","hard to (physically, awkward)","この靴は歩きづらい。"],
+  ["〜得る / 得ない","can / cannot possibly","それは十分あり得る話だ。"]
+ ],
+ "Topic, basis & scope": [
+  ["〜にかけては","when it comes to (skill)","料理にかけては、彼の右に出る者はいない。"],
+  ["〜をめぐって","concerning (dispute)","遺産をめぐって、兄弟が争っている。"],
+  ["〜に応じて","according to, depending on","予算に応じて、プランを選べる。"],
+  ["〜に基づいて","based on (facts, rules)","事実に基づいて、記事を書く。"],
+  ["〜をもとに(して)","based on (a source)","この映画は実話をもとにしている。"],
+  ["〜に沿って","along; in line with","川に沿って歩いた。"],
+  ["〜にわたって","over, throughout (a range)","三日間にわたって、会議が行われた。"],
+  ["〜を通じて / を通して","through; throughout","友人を通じて、彼女と知り合った。"],
+  ["〜において / における","in, at (formal)","会議は東京において行われる。"],
+  ["〜に向けて","toward (a goal)","オリンピックに向けて、準備が進んでいる。"],
+  ["〜をこめて","with (feeling)","心をこめて、手紙を書いた。"],
+  ["〜に反して","contrary to","予想に反して、彼が勝った。"],
+  ["〜に伴って","along with, as","人口の増加に伴って、問題も増えた。"],
+  ["〜にこたえて","in response to","ファンの声にこたえて、追加公演が決まった。"],
+  ["〜にしたら / にすれば","from the standpoint of","子供にしたら、大人の話はつまらないだろう。"],
+  ["〜からいうと / からいって","judging from, in terms of","経験からいって、この方法はうまくいかない。"],
+  ["〜上 (じょう)","from the standpoint of, in terms of","法律上、問題はない。"],
+  ["〜はともかく","setting aside","値段はともかく、デザインがいい。"],
+  ["〜はさておき","putting aside (topic change)","冗談はさておき、本題に入ろう。"]
+ ],
+ "Judgment & assertion": [
+  ["〜ざるを得ない","have no choice but to","社長の命令なら、従わざるを得ない。"],
+  ["〜ずにはいられない","can't help -ing","その話を聞いて、笑わずにはいられなかった。"],
+  ["〜かねない","might well (bad)","そんな運転をしていたら、事故を起こしかねない。"],
+  ["〜かねる","cannot (polite refusal)","そのご要望にはお応えしかねます。"],
+  ["〜っこない","no way, can't possibly","そんなこと、できっこない。"],
+  ["〜ものか","no way will I","あんな店、二度と行くものか。"],
+  ["〜ことか","how … ! (exclamation)","どれほど心配したことか。"],
+  ["〜に相違ない","without doubt (formal)","犯人は彼に相違ない。"],
+  ["〜までもない","no need to even","言うまでもなく、健康は大切だ。"],
+  ["〜てもさしつかえない","it's all right to","明日の会議は欠席してもさしつかえありません。"],
+  ["〜ないものか / ないものだろうか","isn't there some way to","もっと安く行けないものだろうか。"],
+  ["〜ようにも〜ない","can't even if I try","熱があって、起きようにも起きられない。"],
+  ["〜てみせる","I'll show you, definitely will","次の試験は絶対合格してみせる。"],
+  ["〜べきだ / べきではない (review)","should / shouldn't","自分の意見ははっきり言うべきだ。"]
+ ],
+ "Manner & appearance": [
+  ["〜かのようだ","as if","彼は何も知らないかのように振る舞った。"],
+  ["〜ことなく","without (formal)","彼は休むことなく働き続けた。"],
+  ["〜抜きで / 抜きにして","without, leaving out","冗談抜きで、本当に困っている。"],
+  ["〜ずじまい","ended up never doing","忙しくて、結局彼女に会えずじまいだった。"],
+  ["〜まま","as it is, unchanged","靴を履いたまま、部屋に入らないでください。"],
+  ["〜とおり / どおり","as, exactly as","説明書のとおりに組み立てた。"],
+  ["〜ふうに","in such a way","こんなふうに書いてください。"],
+  ["〜っぽい / 気味 / がち (review)","-ish / slightly / tend to","最近、忘れっぽくなった。"]
+ ]
+}
+};
 
+const LEVELS=["N5","N4","N3","N2"];
+const TAGS={N5:"Beginner",N4:"Lower intermediate",N3:"Intermediate",N2:"Upper intermediate"};
 const KEY="jlpt-checklist-v1";
 let done={};
 try{done=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){done={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
+// Ticks from the old standalone N3 page use the same ids: merge them in once.
+try{const old=JSON.parse(localStorage.getItem("jlpt-n3-checklist-v1")||"null");if(old){Object.assign(done,old);save();localStorage.removeItem("jlpt-n3-checklist-v1")}}catch(e){}
 let level="all", hideDone=false, query="";
 try{const s=JSON.parse(localStorage.getItem(KEY+"-ui")||"{}");if(s.level)level=s.level;if(s.hide)hideDone=true}catch(e){}
+const h=(location.hash||"").slice(1).toUpperCase(); if(LEVELS.includes(h)) level=h;
 const saveUI=()=>{try{localStorage.setItem(KEY+"-ui",JSON.stringify({level,hide:hideDone}))}catch(e){}};
 
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -300,7 +566,7 @@ const tick='<svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
 
 function render(){
   const main=document.getElementById("list"); let html=""; let shown=0;
-  for(const lv of ["N5","N4"]){
+  for(const lv of LEVELS){
     if(level!=="all"&&level!==lv) continue;
     let lvHtml="";
     for(const [grp,items] of Object.entries(DATA[lv])){
@@ -315,13 +581,13 @@ function render(){
       });
       if(rows) lvHtml+=`<section class="group"><h3><span>${esc(grp)}</span><span>${gDone}/${items.length}</span></h3><ul>${rows}</ul></section>`;
     }
-    if(lvHtml) html+=`<section class="level"><h2>${lv}<span class="tag">${lv==="N5"?"Beginner":"Lower intermediate"}</span></h2>${lvHtml}</section>`;
+    if(lvHtml) html+=`<section class="level"><h2>${lv}<span class="tag">${TAGS[lv]}</span></h2>${lvHtml}</section>`;
   }
   main.innerHTML=html||`<p class="empty">${hideDone?"Everything here is done. Turn off “Hide done” to review.":"No grammar point matches that search."}</p>`;
   progress();
 }
 function progress(){
-  for(const lv of ["N5","N4"]){
+  for(const lv of LEVELS){
     let total=0,d=0;
     for(const [grp,items] of Object.entries(DATA[lv])) items.forEach((_,i)=>{total++; if(done[`${lv}-${grp}-${i}`.replace(/[^\w-]/g,"_")]) d++;});
     document.getElementById("c-"+lv).textContent=`${d} / ${total}`;

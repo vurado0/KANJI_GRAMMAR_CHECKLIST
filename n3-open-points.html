@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N3 Grammar – Open Points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same visual system as the other gap pages; N3 uses the 紫 accent. Each card: meaning, form chips, notes, one example per variation */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2030; --muted:#5c6478; --line:#dde1ea;
+  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d; --murasaki:#6a3d8f; --murasaki-soft:#efe8f5;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"IBM Plex Sans","Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-jp:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --murasaki:#c19be6; --murasaki-soft:#2c2340; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --murasaki:#c19be6; --murasaki-soft:#2c2340; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding-inline:16px;padding-block:20px 64px}
+a{color:var(--ai)}
+a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:8px}
+nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
+nav.site a:hover{color:var(--fg);background:var(--surface)}
+nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a.done s{text-decoration-thickness:1.5px}
+nav.site a.done .tick{margin-left:4px;color:var(--ai)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0 0;text-wrap:balance}
+h1 span{color:var(--murasaki)}
+.lead{color:var(--muted);margin:6px 0 0;max-width:62ch}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+nav.toc a{font:500 13px var(--f-body);text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 11px;border-radius:999px}
+nav.toc a span{color:var(--muted);font-variant-numeric:tabular-nums;margin-left:2px}
+nav.toc a:hover{border-color:var(--murasaki);color:var(--murasaki)}
+h2{font:600 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:36px 0 10px;scroll-margin-top:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:12px;scroll-margin-top:16px}
+.card+.card{margin-top:12px}
+.head{display:grid;gap:2px}
+h3{font-family:var(--f-jp);font-weight:700;font-size:19px;margin:0}
+.mean{margin:0;color:var(--fg)}
+.row{display:grid;grid-template-columns:4.2rem minmax(0,1fr);gap:10px;align-items:start}
+@media (max-width:520px){.row{grid-template-columns:minmax(0,1fr);gap:4px}}
+.k{font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--murasaki);padding-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--f-jp);font-size:14px;background:var(--murasaki-soft);color:var(--fg);padding:2px 9px;border-radius:6px}
+ul.notes{margin:0;padding-left:1.1em;display:grid;gap:2px;color:var(--fg);font-size:14px}
+ul.notes li::marker{color:var(--murasaki)}
+ul.ex{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.ex li{display:grid;gap:0;padding-left:12px;border-left:2px solid var(--murasaki-soft)}
+.vl{font:600 11px var(--f-body);letter-spacing:.04em;color:var(--muted)}
+.jp{font-family:var(--f-jp);font-size:16px}
+.jp b{color:var(--murasaki);font-weight:700}
+.en{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site" aria-label="Site">
+    <a href="./">Bunpou checklist</a>
+    <a href="conjugations.html">Verb conjugation</a>
+    <a href="n5-open-points.html" class="done" title="Done"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n4-open-points.html" class="done" title="Done"><s>N4 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n3-open-points.html" aria-current="page">N3 gaps</a>
+  </nav>
+  <h1>N3 Grammar <span>Open Points</span></h1>
+  <p class="lead">The 69 N3 points still unticked, with 253 example sentences. Each card gives the meaning, how it attaches (Form), what to watch out for (Notes), and one example for every variation (Uses).</p>
+  <nav class="toc" aria-label="Groups">
+    <a href="#g-timesequence">Time &amp; sequence <span>9</span></a><a href="#g-causeresult">Cause &amp; result <span>7</span></a><a href="#g-conditionsconcession">Conditions &amp; concession <span>7</span></a><a href="#g-degreecomparison">Degree &amp; comparison <span>10</span></a><a href="#g-topicviewpoint">Topic &amp; viewpoint <span>8</span></a><a href="#g-changeproportion">Change &amp; proportion <span>4</span></a><a href="#g-judgmentcertainty">Judgment &amp; certainty <span>9</span></a><a href="#g-appearancehearsayfeeling">Appearance, hearsay &amp; feeling <span>4</span></a><a href="#g-actionsattempts">Actions &amp; attempts <span>9</span></a><a href="#g-writtenstyle">Written style <span>2</span></a>
+  </nav>
+
+  <h2 id="g-timesequence">Time &amp; sequence</h2>  <section class="card" id="saichuu">
+    <div class="head"><h3>〜最中に</h3><p class="mean">Right in the middle of something, usually when something interrupts it.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ている + 最中(に)</span><span class="chip">N の + 最中(に)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The second half is an unexpected interruption.</li><li>最中だ at the end of a sentence means "I'm in the middle of it".</li><li>Stronger than 間に: it points at the peak of the action.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-ている最中に</span><span class="jp">料理をしている<b>最中に</b>、電話がかかってきた。</span><span class="en">The phone rang right while I was cooking.</span></li>
+      <li><span class="vl">N の最中に</span><span class="jp">試験の<b>最中に</b>、地震が起きた。</span><span class="en">An earthquake hit in the middle of the exam.</span></li>
+      <li><span class="vl">最中だ (end)</span><span class="jp">今、会議の<b>最中です</b>。後でかけ直します。</span><span class="en">I'm in a meeting right now. I'll call you back.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="totan">
+    <div class="head"><h3>〜たとたん(に)</h3><p class="mean">The moment that … (something unexpected happens).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-た + とたん(に)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Always the た-form before it.</li><li>The second half is sudden and surprising, not your own plan: ×帰ったとたん、宿題をしよう.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-たとたん</span><span class="jp">窓を開けた<b>とたん</b>、強い風が入ってきた。</span><span class="en">The moment I opened the window, a strong wind blew in.</span></li>
+      <li><span class="vl">V-たとたんに</span><span class="jp">彼は座った<b>とたんに</b>、寝てしまった。</span><span class="en">He fell asleep the moment he sat down.</span></li>
+      <li><span class="vl">change of state</span><span class="jp">有名になった<b>とたん</b>、彼の態度が変わった。</span><span class="en">As soon as he got famous, his attitude changed.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tokoro">
+    <div class="head"><h3>〜ところに / ところへ / ところを</h3><p class="mean">Just as … (at that exact moment someone comes, or sees you).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / V-ている / V-た + ところに・ところへ・ところを</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>ところに / ところへ: someone arrives or something interrupts.</li><li>ところを: someone sees, catches or helps you at that moment (見る, 見つかる, 助ける).</li><li>Dictionary form = about to, ている = in the middle, た = just after.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-dict + ところに</span><span class="jp">出かける<b>ところに</b>、母から電話がかかってきた。</span><span class="en">Just as I was about to go out, my mother called.</span></li>
+      <li><span class="vl">V-ている + ところへ</span><span class="jp">晩ご飯を食べている<b>ところへ</b>、友達が遊びに来た。</span><span class="en">A friend dropped by just as we were eating dinner.</span></li>
+      <li><span class="vl">V-た + ところに</span><span class="jp">寝た<b>ところに</b>、宅配便が来た。</span><span class="en">A delivery came just after I'd gone to bed.</span></li>
+      <li><span class="vl">V-ている + ところを</span><span class="jp">タバコを吸っている<b>ところを</b>、先生に見られた。</span><span class="en">The teacher saw me while I was smoking.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="shidai">
+    <div class="head"><h3>〜次第</h3><p class="mean">As soon as … (then I'll do something). Also: depends on.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + 次第</span><span class="chip">する-noun + 次第</span><span class="chip">N + 次第だ / 次第で</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Formal, common in business.</li><li>The second half is a future action or request, never a past event: ×着き次第、電話した.</li><li>N + 次第だ means "it depends on N".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-stem + 次第</span><span class="jp">資料が届き<b>次第</b>、ご連絡します。</span><span class="en">I'll contact you as soon as the documents arrive.</span></li>
+      <li><span class="vl">する-noun + 次第</span><span class="jp">到着<b>次第</b>、お電話ください。</span><span class="en">Please call as soon as you arrive.</span></li>
+      <li><span class="vl">N + 次第だ</span><span class="jp">合格できるかどうかは、努力<b>次第だ</b>。</span><span class="en">Whether you pass depends on your effort.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tekarade">
+    <div class="head"><h3>〜てからでないと</h3><p class="mean">Not until …, only after ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-て + からでないと / からでなければ + negative result</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The second half is negative or difficult: can't, won't, mustn't.</li><li>からでなければ is more formal; からじゃないと is casual.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">てからでないと</span><span class="jp">両親と相談して<b>からでないと</b>、決められません。</span><span class="en">I can't decide until I've talked to my parents.</span></li>
+      <li><span class="vl">てからでなければ</span><span class="jp">説明書を読んで<b>からでなければ</b>、使ってはいけない。</span><span class="en">You mustn't use it until you've read the manual.</span></li>
+      <li><span class="vl">casual てからじゃないと</span><span class="jp">宿題をして<b>からじゃないと</b>、ゲームはだめだよ。</span><span class="en">No games until you've done your homework.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tehajimete">
+    <div class="head"><h3>〜てはじめて</h3><p class="mean">Only after doing … (did I realise or do something for the first time).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-て + はじめて</span><span class="chip">N があって + はじめて</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The second half is a realisation or change: 分かる, 気づく, 知る.</li><li>It stresses that it took this experience to get there.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">+ 分かる</span><span class="jp">一人暮らしをして<b>はじめて</b>、母の大変さが分かった。</span><span class="en">Only after living alone did I understand how hard my mother had it.</span></li>
+      <li><span class="vl">+ 気づく</span><span class="jp">失って<b>はじめて</b>、その大切さに気づいた。</span><span class="en">Only after losing it did I notice how precious it was.</span></li>
+      <li><span class="vl">N があってはじめて</span><span class="jp">皆さんの協力があって<b>はじめて</b>、このイベントができました。</span><span class="en">This event was only possible with everyone's help.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tsuideni">
+    <div class="head"><h3>〜ついでに</h3><p class="mean">While you're at it, on the way (doing one thing, you also do another).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / V-た + ついでに</span><span class="chip">N の + ついでに</span><span class="chip">ついでに (standalone)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The first action is the main purpose; the second is an extra.</li><li>Standalone ついでに starts a sentence: "while you're at it".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-dict</span><span class="jp">郵便局に行く<b>ついでに</b>、この手紙も出してくれる？</span><span class="en">Since you're going to the post office, could you send this letter too?</span></li>
+      <li><span class="vl">V-た</span><span class="jp">京都に行った<b>ついでに</b>、大阪にも寄った。</span><span class="en">While I was in Kyoto, I also stopped by Osaka.</span></li>
+      <li><span class="vl">N の</span><span class="jp">買い物の<b>ついでに</b>、銀行に寄った。</span><span class="en">I dropped by the bank while I was out shopping.</span></li>
+      <li><span class="vl">standalone</span><span class="jp"><b>ついでに</b>、ゴミも捨ててきて。</span><span class="en">While you're at it, take the rubbish out too.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="kake">
+    <div class="head"><h3>〜かけ / かける</h3><p class="mean">Half-done, started but not finished; about to.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + かけ(の N)</span><span class="chip">かけだ</span><span class="chip">かける (verb)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>かけの N: something left half-done (飲みかけのコーヒー).</li><li>かける as a verb: start to, or almost happen (死にかける).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">かけの N</span><span class="jp">飲み<b>かけの</b>コーヒーが冷めてしまった。</span><span class="en">My half-drunk coffee has gone cold.</span></li>
+      <li><span class="vl">かけだ</span><span class="jp">この本はまだ読み<b>かけだ</b>。</span><span class="en">I'm still halfway through this book.</span></li>
+      <li><span class="vl">かける (start to)</span><span class="jp">何か言い<b>かけて</b>、やめた。</span><span class="en">He started to say something, then stopped.</span></li>
+      <li><span class="vl">かけた (almost)</span><span class="jp">子供の頃、川でおぼれ<b>かけた</b>ことがある。</span><span class="en">As a child I almost drowned in a river.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tsutsuaru">
+    <div class="head"><h3>〜つつある / つつ / つつも</h3><p class="mean">In the process of, gradually; (つつ) while; (つつも) although.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + つつある</span><span class="chip">V-stem + つつ</span><span class="chip">V-stem + つつも</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>つつある is written style, for ongoing change (増える, 変わる, 回復する).</li><li>つつ = while (formal ながら); つつも = although (knowing it, still …).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">つつある</span><span class="jp">日本の人口は減り<b>つつある</b>。</span><span class="en">Japan's population is gradually decreasing.</span></li>
+      <li><span class="vl">つつある (recovery)</span><span class="jp">彼の病気は回復し<b>つつある</b>。</span><span class="en">He is gradually recovering from his illness.</span></li>
+      <li><span class="vl">つつ (while)</span><span class="jp">音楽を聞き<b>つつ</b>、勉強する。</span><span class="en">I study while listening to music.</span></li>
+      <li><span class="vl">つつも (although)</span><span class="jp">悪いと知り<b>つつも</b>、やってしまった。</span><span class="en">I knew it was wrong, yet I did it anyway.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-causeresult">Cause &amp; result</h2>  <section class="card" id="seika">
+    <div class="head"><h3>〜せいか</h3><p class="mean">Perhaps because … (a bad result with an uncertain cause).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + せいか</span><span class="chip">な-adj な</span><span class="chip">N の + せいか</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Like せいで, but the speaker isn't sure.</li><li>For a good result use おかげか.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N の</span><span class="jp">年の<b>せいか</b>、最近疲れやすい。</span><span class="en">Maybe it's my age, but I tire easily lately.</span></li>
+      <li><span class="vl">V-た</span><span class="jp">昨日飲みすぎた<b>せいか</b>、頭が痛い。</span><span class="en">Maybe because I drank too much yesterday, I have a headache.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">部屋が暗い<b>せいか</b>、気分が沈む。</span><span class="en">Maybe because the room is dark, I feel down.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">心配な<b>せいか</b>、よく眠れない。</span><span class="en">Maybe because I'm worried, I can't sleep well.</span></li>
+      <li><span class="vl">おかげか (good)</span><span class="jp">薬の<b>おかげか</b>、だいぶ楽になった。</span><span class="en">Maybe thanks to the medicine, I feel much better.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="karakoso">
+    <div class="head"><h3>〜からこそ</h3><p class="mean">Precisely because … (stressing the reason).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + からこそ</span><span class="chip">N / な-adj + だからこそ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Often goes against what people would expect.</li><li>Frequently ends with のだ / んです.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">失敗した<b>からこそ</b>、学べたこともある。</span><span class="en">There are things I could learn precisely because I failed.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">忙しい<b>からこそ</b>、休みが大切だ。</span><span class="en">Precisely because I'm busy, rest matters.</span></li>
+      <li><span class="vl">な-adj だ</span><span class="jp">好きだ<b>からこそ</b>、厳しく言うのだ。</span><span class="en">I'm strict precisely because I care.</span></li>
+      <li><span class="vl">N だ</span><span class="jp">友達だ<b>からこそ</b>、本当のことを言った。</span><span class="en">I told the truth precisely because we're friends.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="monodakara">
+    <div class="head"><h3>〜ものだから / もので</h3><p class="mean">Because … (an excuse or personal justification).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + ものだから</span><span class="chip">な-adj な / N な + ものだから</span><span class="chip">もので (formal)</span><span class="chip">もん (casual)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Used to explain or excuse yourself.</li><li>The second half can't be a request or order: ×暑いものだから、窓を開けて.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">ものですから</span><span class="jp">電車が遅れた<b>ものですから</b>、遅くなりました。</span><span class="en">I'm late because the train was delayed.</span></li>
+      <li><span class="vl">もので</span><span class="jp">道に迷った<b>もので</b>、遅れてしまいました。</span><span class="en">I got lost, so I was late.</span></li>
+      <li><span class="vl">N な + ものだから</span><span class="jp">母が病気な<b>ものだから</b>、早く帰らなければならない。</span><span class="en">My mother is ill, so I have to go home early.</span></li>
+      <li><span class="vl">casual もん</span><span class="jp">だって、眠かったんだ<b>もん</b>。</span><span class="en">But I was sleepy!</span></li>
+    </ul></div>
+  </section>  <section class="card" id="wakeda">
+    <div class="head"><h3>〜わけだ</h3><p class="mean">No wonder / that means / so that's why (a logical conclusion).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + わけだ</span><span class="chip">な-adj な / N の・である + わけだ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>どうりで〜わけだ = no wonder.</li><li>つまり〜わけだ restates what was said.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">no wonder</span><span class="jp">十年住んでいたのか。どうりで日本語が上手な<b>わけだ</b>。</span><span class="en">He lived there ten years? No wonder his Japanese is good.</span></li>
+      <li><span class="vl">conclusion</span><span class="jp">時給千円で五時間働いたから、五千円もらえる<b>わけだ</b>。</span><span class="en">1,000 yen an hour for five hours, so I get 5,000 yen.</span></li>
+      <li><span class="vl">restating</span><span class="jp">つまり、来週は会社に来ない<b>わけですね</b>。</span><span class="en">So that means you won't come in next week.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="wakedewanai">
+    <div class="head"><h3>〜わけではない</h3><p class="mean">It doesn't mean that …, it's not that ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + わけではない</span><span class="chip">な-adj な / N という + わけではない</span><span class="chip">casual わけじゃない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Softens or denies a conclusion someone might draw.</li><li>With 全部, いつも, 必ずしも it's a partial negation: not all, not always.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">料理ができない<b>わけではない</b>が、あまりしない。</span><span class="en">It's not that I can't cook, I just don't often.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">嫌いな<b>わけではない</b>。ただ、今日は食べたくない。</span><span class="en">It's not that I dislike it. I just don't want it today.</span></li>
+      <li><span class="vl">partial</span><span class="jp">日本人が全員、寿司が好きな<b>わけではない</b>。</span><span class="en">Not every Japanese person likes sushi.</span></li>
+      <li><span class="vl">casual</span><span class="jp">怒っている<b>わけじゃない</b>よ。</span><span class="en">It's not that I'm angry.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="wakeganai">
+    <div class="head"><h3>〜わけがない</h3><p class="mean">There's no way that …, impossible.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + わけがない</span><span class="chip">な-adj な / N の + わけがない</span><span class="chip">casual わけない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A strong denial based on your judgment.</li><li>Almost the same as はずがない.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">あんなに練習したんだから、負ける<b>わけがない</b>。</span><span class="en">We practised that much, there's no way we'll lose.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">こんなに安いのに、おいしい<b>わけがない</b>。</span><span class="en">It's this cheap, it can't possibly taste good.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">あの人が親切な<b>わけがない</b>。</span><span class="en">There's no way that person is kind.</span></li>
+      <li><span class="vl">casual</span><span class="jp">そんなこと、できる<b>わけない</b>じゃん。</span><span class="en">No way I can do that.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="wakeniwaikanai">
+    <div class="head"><h3>〜わけにはいかない</h3><p class="mean">Can't (because it wouldn't be right), not because of ability.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + わけにはいかない</span><span class="chip">polite わけにはいきません</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The reason is social, moral or situational.</li><li>The negative version (ないわけにはいかない) means "have to", see Judgment.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">situation</span><span class="jp">明日は試験だから、休む<b>わけにはいかない</b>。</span><span class="en">I have an exam tomorrow, so I can't skip.</span></li>
+      <li><span class="vl">rule</span><span class="jp">車で来たので、お酒を飲む<b>わけにはいかない</b>。</span><span class="en">I came by car, so I can't drink.</span></li>
+      <li><span class="vl">polite</span><span class="jp">これは借りた物だから、捨てる<b>わけにはいきません</b>。</span><span class="en">It's borrowed, so I can't throw it away.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-conditionsconcession">Conditions &amp; concession</h2>  <section class="card" id="toshitara">
+    <div class="head"><h3>〜としたら / とすれば / とすると</h3><p class="mean">Supposing that …, if it's the case that ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + としたら・とすれば・とすると</span><span class="chip">N / な-adj (だ) + としたら</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>としたら: the most common, conversational hypothesis.</li><li>とすれば: more logical or formal.</li><li>とすると: "if that's so, then …", a conclusion from information.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">としたら</span><span class="jp">宝くじが当たった<b>としたら</b>、何をしますか。</span><span class="en">Supposing you won the lottery, what would you do?</span></li>
+      <li><span class="vl">とすれば</span><span class="jp">十時に出た<b>とすれば</b>、もう着いているはずだ。</span><span class="en">If he left at ten, he should be there by now.</span></li>
+      <li><span class="vl">とすると</span><span class="jp">彼が犯人じゃない<b>とすると</b>、誰がやったんだろう。</span><span class="en">If he's not the culprit, then who did it?</span></li>
+      <li><span class="vl">N だとしたら</span><span class="jp">もしそれが本当だ<b>としたら</b>、大変だ。</span><span class="en">If that's true, it's serious.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="toshitemo">
+    <div class="head"><h3>〜としても</h3><p class="mean">Even if (supposing) ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + としても</span><span class="chip">N / な-adj (だ) + としても</span><span class="chip">たとえ〜としても</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A stronger, more hypothetical ても.</li><li>Often paired with たとえ.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">今から行った<b>としても</b>、間に合わないだろう。</span><span class="en">Even if we go now, we probably won't make it.</span></li>
+      <li><span class="vl">N だ</span><span class="jp">たとえ冗談だ<b>としても</b>、言っていいことと悪いことがある。</span><span class="en">Even as a joke, some things shouldn't be said.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">値段が高い<b>としても</b>、品質がよければ買う。</span><span class="en">Even if it's pricey, I'll buy it if the quality is good.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tatoe">
+    <div class="head"><h3>たとえ〜ても</h3><p class="mean">Even if …, no matter ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">たとえ + V-ても</span><span class="chip">い-adj くても</span><span class="chip">な-adj / N でも</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>たとえ only adds emphasis; ても carries the meaning.</li><li>The second half is a firm decision or fact.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-ても</span><span class="jp"><b>たとえ</b>雨が降っ<b>ても</b>、試合は行われる。</span><span class="en">Even if it rains, the match will go ahead.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp"><b>たとえ</b>高く<b>ても</b>、この時計が欲しい。</span><span class="en">Even if it's expensive, I want this watch.</span></li>
+      <li><span class="vl">N でも</span><span class="jp"><b>たとえ</b>子供<b>でも</b>、ルールは守らなければならない。</span><span class="en">Even children have to follow the rules.</span></li>
+      <li><span class="vl">な-adj でも</span><span class="jp"><b>たとえ</b>嫌い<b>でも</b>、少しは食べなさい。</span><span class="en">Even if you don't like it, eat a little.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="kuseni">
+    <div class="head"><h3>〜くせに</h3><p class="mean">Even though … (with blame or annoyance).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + くせに</span><span class="chip">な-adj な / N の + くせに</span><span class="chip">sentence-end くせに</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Stronger and ruder than のに.</li><li>Both halves have the same subject, usually someone else.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">知っている<b>くせに</b>、教えてくれない。</span><span class="en">He knows, yet he won't tell me.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">お金がない<b>くせに</b>、高い物ばかり買う。</span><span class="en">He has no money, yet keeps buying expensive things.</span></li>
+      <li><span class="vl">N の</span><span class="jp">子供の<b>くせに</b>、生意気だ。</span><span class="en">He's just a kid, yet he's so cheeky.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">下手な<b>くせに</b>、文句ばかり言う。</span><span class="en">He's bad at it, yet complains all the time.</span></li>
+      <li><span class="vl">sentence end</span><span class="jp">自分だって遅れた<b>くせに</b>。</span><span class="en">Says you, you were late too!</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nimokakawarazu">
+    <div class="head"><h3>〜にもかかわらず</h3><p class="mean">Despite …, although … (formal).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + にもかかわらず</span><span class="chip">N / な-adj (である) + にもかかわらず</span><span class="chip">それにもかかわらず</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Formal and written.</li><li>The result goes against expectation; no requests or orders after it.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">雨<b>にもかかわらず</b>、たくさんの人が来た。</span><span class="en">Despite the rain, many people came.</span></li>
+      <li><span class="vl">V</span><span class="jp">一生懸命勉強した<b>にもかかわらず</b>、不合格だった。</span><span class="en">Despite studying hard, I failed.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">値段が高い<b>にもかかわらず</b>、よく売れている。</span><span class="en">Despite the high price, it sells well.</span></li>
+      <li><span class="vl">connector</span><span class="jp">何度も注意された。<b>それにもかかわらず</b>、同じミスをした。</span><span class="en">He was warned many times. Despite that, he made the same mistake.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="naikotowanai">
+    <div class="head"><h3>〜ないことはない / ないこともない</h3><p class="mean">It's not that … not (= you can, but reluctantly or partly).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ない</span><span class="chip">い-adj くない</span><span class="chip">な-adj / N じゃない + ことはない・こともない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Double negative = a weak yes.</li><li>ないこともない is even more hesitant.</li><li>Don't confuse with V-dict + ことはない (= no need to).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">potential</span><span class="jp">食べられない<b>ことはない</b>が、好きではない。</span><span class="en">It's not that I can't eat it, I just don't like it.</span></li>
+      <li><span class="vl">V</span><span class="jp">行かない<b>ことはない</b>けど、あまり行かない。</span><span class="en">It's not that I never go, I just don't go often.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">この服、高くない<b>こともない</b>けど、まあいいか。</span><span class="en">It's not exactly cheap, but oh well.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">無理じゃない<b>ことはない</b>けど、ちょっと大変だ。</span><span class="en">It's not impossible, but it's tough.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tokorodatta">
+    <div class="head"><h3>〜ところだった</h3><p class="mean">Almost happened, nearly (something bad).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + ところだった</span><span class="chip">with もう少しで / 危うく</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>It didn't actually happen.</li><li>〜ば〜ところだった: if not for X, Y would have happened.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">もう少しで</span><span class="jp">もう少しで車にぶつかる<b>ところだった</b>。</span><span class="en">I very nearly hit a car.</span></li>
+      <li><span class="vl">危うく</span><span class="jp">危うく電車に乗り遅れる<b>ところだった</b>。</span><span class="en">I almost missed the train.</span></li>
+      <li><span class="vl">〜ば〜ところだった</span><span class="jp">君が教えてくれなければ、忘れる<b>ところだった</b>。</span><span class="en">If you hadn't told me, I'd have forgotten.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-degreecomparison">Degree &amp; comparison</h2>  <section class="card" id="hodonai">
+    <div class="head"><h3>〜ほど〜ない</h3><p class="mean">Not as … as.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N / V-dict + ほど + negative</span><span class="chip">ほどではない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>AはBほど〜ない: A is less than B.</li><li>Only with negatives: ×AはBほど暑い.</li><li>ほどではない = not to the point of.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">今年の夏は去年<b>ほど</b>暑く<b>ない</b>。</span><span class="en">This summer isn't as hot as last year.</span></li>
+      <li><span class="vl">思ったほど</span><span class="jp">試験は思った<b>ほど</b>難しく<b>なかった</b>。</span><span class="en">The exam wasn't as hard as I'd expected.</span></li>
+      <li><span class="vl">ability</span><span class="jp">私は兄<b>ほど</b>速く走れ<b>ない</b>。</span><span class="en">I can't run as fast as my older brother.</span></li>
+      <li><span class="vl">ほどではない</span><span class="jp">痛いけど、病院に行く<b>ほどではない</b>。</span><span class="en">It hurts, but not enough to go to the doctor.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="hodowanai">
+    <div class="head"><h3>〜ほど〜はない</h3><p class="mean">Nothing is as … as (a superlative).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + ほど + adj + N はない・いない</span><span class="chip">V-dict + ことほど〜ことはない</span><span class="chip">ぐらい〜はない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A strong personal opinion, like 一番.</li><li>Use いない for people.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">thing</span><span class="jp">家族<b>ほど</b>大切なもの<b>はない</b>。</span><span class="en">Nothing is as precious as family.</span></li>
+      <li><span class="vl">person</span><span class="jp">彼<b>ほど</b>優しい人<b>はいない</b>。</span><span class="en">There's no one as kind as him.</span></li>
+      <li><span class="vl">V こと</span><span class="jp">好きな人と過ごすこと<b>ほど</b>、幸せなこと<b>はない</b>。</span><span class="en">Nothing is happier than time with someone you love.</span></li>
+      <li><span class="vl">ぐらい</span><span class="jp">今日<b>ぐらい</b>暑い日<b>はない</b>。</span><span class="en">There's no day as hot as today.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="warini">
+    <div class="head"><h3>〜わりに(は)</h3><p class="mean">Considering …, for … (better or worse than expected).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + わりに</span><span class="chip">な-adj な / N の + わりに</span><span class="chip">わりと (relatively)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The result differs from what the standard predicts, good or bad.</li><li>わりと on its own means "relatively".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">い-adj</span><span class="jp">この店は安い<b>わりに</b>、おいしい。</span><span class="en">This place is tasty considering it's cheap.</span></li>
+      <li><span class="vl">N の</span><span class="jp">年の<b>わりに</b>、若く見える。</span><span class="en">She looks young for her age.</span></li>
+      <li><span class="vl">V</span><span class="jp">よく勉強した<b>わりには</b>、点数が悪かった。</span><span class="en">For all my studying, my score was bad.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">有名な<b>わりに</b>、つまらない映画だった。</span><span class="en">For such a famous film, it was boring.</span></li>
+      <li><span class="vl">わりと</span><span class="jp">今日は<b>わりと</b>暖かいね。</span><span class="en">It's fairly warm today.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nishitewa">
+    <div class="head"><h3>〜にしては</h3><p class="mean">For … (unexpectedly, given that it's X).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N / plain V + にしては</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Compares with what's typical for that specific person or thing.</li><li>Mostly with nouns and verbs; with adjectives use わりに.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">初めて<b>にしては</b>、上手ですね。</span><span class="en">You're good for a first-timer.</span></li>
+      <li><span class="vl">N (person)</span><span class="jp">子供<b>にしては</b>、難しい言葉を知っている。</span><span class="en">He knows difficult words for a child.</span></li>
+      <li><span class="vl">V</span><span class="jp">三年も日本に住んでいた<b>にしては</b>、日本語が下手だ。</span><span class="en">For someone who lived in Japan three years, his Japanese is poor.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="gachi">
+    <div class="head"><h3>〜がち</h3><p class="mean">Tend to, prone to (usually negative).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + がち</span><span class="chip">N + がち</span><span class="chip">がちな N</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A habit or tendency, not a permanent trait.</li><li>Compare 気味 (a slight state now).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-stem</span><span class="jp">冬は風邪をひき<b>がち</b>だ。</span><span class="en">I tend to catch colds in winter.</span></li>
+      <li><span class="vl">N</span><span class="jp">彼は病気<b>がち</b>で、よく学校を休む。</span><span class="en">He's often ill and misses a lot of school.</span></li>
+      <li><span class="vl">がちな N</span><span class="jp">若い人がし<b>がちな</b>失敗。</span><span class="en">A mistake young people tend to make.</span></li>
+      <li><span class="vl">遅れがち</span><span class="jp">最近、電車が遅れ<b>がち</b>だ。</span><span class="en">The trains tend to be late lately.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="gimi">
+    <div class="head"><h3>〜気味</h3><p class="mean">Slightly, a touch of, feeling a bit (usually negative).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + 気味</span><span class="chip">V-ます stem + 気味</span><span class="chip">気味の N</span><span class="chip">気味だ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A slight state you're in now.</li><li>Common: 風邪, 疲れ, 太り, 遅れ, 緊張.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">風邪<b>気味</b>なので、今日は早く寝ます。</span><span class="en">I've got a bit of a cold, so I'll sleep early.</span></li>
+      <li><span class="vl">V-stem</span><span class="jp">最近、太り<b>気味</b>だ。</span><span class="en">I've been putting on a little weight lately.</span></li>
+      <li><span class="vl">気味の N</span><span class="jp">疲れ<b>気味の</b>顔をしているね。</span><span class="en">You look a bit tired.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="koso">
+    <div class="head"><h3>〜こそ</h3><p class="mean">This very …, precisely (strong emphasis).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + こそ</span><span class="chip">V-て + こそ</span><span class="chip">から + こそ</span><span class="chip">こちらこそ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Spotlights the word right before it.</li><li>からこそ = precisely because (see Cause).</li><li>こちらこそ = "no, it's me who should say that".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">今年<b>こそ</b>、N3に合格したい。</span><span class="en">This year for sure, I want to pass N3.</span></li>
+      <li><span class="vl">Vてこそ</span><span class="jp">実際に使って<b>こそ</b>、言葉は身につく。</span><span class="en">Only by actually using it do you really learn a language.</span></li>
+      <li><span class="vl">こちらこそ</span><span class="jp">「ありがとうございました。」「<b>こちらこそ</b>。」</span><span class="en">"Thank you." "No, thank you."</span></li>
+      <li><span class="vl">これこそ</span><span class="jp">これ<b>こそ</b>私が探していた本だ。</span><span class="en">This is exactly the book I was looking for.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="ueni">
+    <div class="head"><h3>〜うえ(に)</h3><p class="mean">On top of that, not only … but also.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + うえ(に)</span><span class="chip">な-adj な / N の・である + うえ(に)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Adds a second point in the same direction: both good or both bad.</li><li>No request or command in the second half.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">い-adj</span><span class="jp">この店は安い<b>うえに</b>、おいしい。</span><span class="en">This shop is cheap, and tasty too.</span></li>
+      <li><span class="vl">V</span><span class="jp">道に迷った<b>うえに</b>、雨まで降ってきた。</span><span class="en">I got lost, and then it even started raining.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">彼女はきれいな<b>うえに</b>、頭もいい。</span><span class="en">She's pretty and clever too.</span></li>
+      <li><span class="vl">N である</span><span class="jp">彼は医者である<b>うえに</b>、小説家でもある。</span><span class="en">He's a doctor and a novelist as well.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nikuwaete">
+    <div class="head"><h3>〜に加えて</h3><p class="mean">In addition to … (formal).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + に加えて</span><span class="chip">それに加えて (sentence start)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Formal; the second half often has も.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">雨<b>に加えて</b>、風も強くなってきた。</span><span class="en">On top of the rain, the wind has picked up.</span></li>
+      <li><span class="vl">cost</span><span class="jp">授業料<b>に加えて</b>、教科書代もかかる。</span><span class="en">Besides tuition, there's the cost of textbooks.</span></li>
+      <li><span class="vl">sentence start</span><span class="jp">給料が安い。<b>それに加えて</b>、残業も多い。</span><span class="en">The pay is low. On top of that, there's lots of overtime.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nikagiru">
+    <div class="head"><h3>〜に限る / に限って / に限らず</h3><p class="mean">Nothing beats …; (に限って) of all times; (に限らず) not only.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / V-ない / N + に限る</span><span class="chip">N + に限って</span><span class="chip">N + に限らず</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>に限る is a personal opinion: the best thing is.</li><li>に限って: "always just when" or "of all people".</li><li>に限らず: not limited to.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-dict</span><span class="jp">疲れた時は、寝る<b>に限る</b>。</span><span class="en">When you're tired, nothing beats sleep.</span></li>
+      <li><span class="vl">V-ない</span><span class="jp">危ない所には、近づかない<b>に限る</b>。</span><span class="en">It's best to stay away from dangerous places.</span></li>
+      <li><span class="vl">N</span><span class="jp">夏はビール<b>に限る</b>。</span><span class="en">In summer, nothing beats a beer.</span></li>
+      <li><span class="vl">に限って</span><span class="jp">急いでいる時<b>に限って</b>、電車が遅れる。</span><span class="en">The train is late precisely when I'm in a hurry.</span></li>
+      <li><span class="vl">に限らず</span><span class="jp">この店は若者<b>に限らず</b>、お年寄りにも人気がある。</span><span class="en">This shop is popular not just with young people but with older people too.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-topicviewpoint">Topic &amp; viewpoint</h2>  <section class="card" id="nikanshite">
+    <div class="head"><h3>〜に関して</h3><p class="mean">Regarding, concerning (formal について).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + に関して</span><span class="chip">N + に関する + N</span><span class="chip">に関しては / に関しても</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>More formal than について.</li><li>Before a noun use に関する: ×に関してN.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">この件<b>に関して</b>、質問があります。</span><span class="en">I have a question regarding this matter.</span></li>
+      <li><span class="vl">に関する N</span><span class="jp">環境問題<b>に関する</b>本を読んだ。</span><span class="en">I read a book on environmental issues.</span></li>
+      <li><span class="vl">に関しては</span><span class="jp">料金<b>に関しては</b>、後でご説明します。</span><span class="en">As for the fees, I'll explain later.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nitaishite">
+    <div class="head"><h3>〜に対して</h3><p class="mean">Towards (an attitude or action); in contrast to; per.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + に対して</span><span class="chip">N + に対する + N</span><span class="chip">plain + のに対して</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Three uses: target of a feeling or action, contrast (のに対して), and ratio (一人に対して).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">target</span><span class="jp">先生<b>に対して</b>、失礼なことを言ってしまった。</span><span class="en">I said something rude to the teacher.</span></li>
+      <li><span class="vl">に対する N</span><span class="jp">親<b>に対する</b>感謝の気持ちを忘れない。</span><span class="en">I won't forget my gratitude to my parents.</span></li>
+      <li><span class="vl">contrast</span><span class="jp">兄は背が高い<b>のに対して</b>、弟は低い。</span><span class="en">The older brother is tall, whereas the younger one is short.</span></li>
+      <li><span class="vl">ratio</span><span class="jp">学生十人<b>に対して</b>、先生が一人いる。</span><span class="en">There's one teacher for every ten students.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="toieba">
+    <div class="head"><h3>〜といえば / というと / といったら</h3><p class="mean">Speaking of …, when it comes to ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + といえば・というと・といったら</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>といえば: brings up a related topic or the first thing that comes to mind.</li><li>というと: also checks what someone means (〜というと？).</li><li>といったら: emotional emphasis, "words can't describe".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">といえば</span><span class="jp">日本<b>といえば</b>、富士山ですね。</span><span class="en">Speaking of Japan, it's Mount Fuji.</span></li>
+      <li><span class="vl">というと</span><span class="jp">北海道<b>というと</b>、やっぱり雪だ。</span><span class="en">When you think of Hokkaido, it's snow.</span></li>
+      <li><span class="vl">というと (clarify)</span><span class="jp">「来週の件ですが…」「来週の件<b>というと</b>、会議のことですか。」</span><span class="en">"About next week…" "Next week, you mean the meeting?"</span></li>
+      <li><span class="vl">といったら</span><span class="jp">その時の嬉しさ<b>といったら</b>、言葉にできない。</span><span class="en">The joy I felt then, I can't put it into words.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="towa">
+    <div class="head"><h3>〜とは / というのは</h3><p class="mean">Means, is defined as; (とは) surprise; (というのは) the reason is.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + とは / というのは + 〜ことだ・〜という意味だ</span><span class="chip">plain + とは (surprise)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Definition: 〜とは〜のことだ. というのは is the spoken version.</li><li>Sentence-start というのは introduces a reason.</li><li>Sentence-end とは shows surprise.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">definition</span><span class="jp">「積ん読」<b>とは</b>、買った本を読まずにためておくことだ。</span><span class="en">"Tsundoku" means buying books and leaving them unread.</span></li>
+      <li><span class="vl">spoken</span><span class="jp">「KY」<b>というのは</b>、空気が読めないという意味です。</span><span class="en">"KY" means someone who can't read the room.</span></li>
+      <li><span class="vl">reason</span><span class="jp">明日は休みます。<b>というのは</b>、母が入院したからです。</span><span class="en">I'll be off tomorrow. The reason is that my mother is in hospital.</span></li>
+      <li><span class="vl">surprise</span><span class="jp">まさか彼が一位になる<b>とは</b>思わなかった。</span><span class="en">I never imagined he'd come first.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="karasuruto">
+    <div class="head"><h3>〜からすると / からすれば / から見ると</h3><p class="mean">Judging from …; from the standpoint of ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + からすると・からすれば・から見ると</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Two uses: the basis for a guess, and a person's point of view.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">judging</span><span class="jp">彼の顔<b>からすると</b>、怒っているようだ。</span><span class="en">Judging from his face, he seems angry.</span></li>
+      <li><span class="vl">viewpoint</span><span class="jp">親<b>からすれば</b>、子供はいつまでも子供だ。</span><span class="en">To a parent, a child is always a child.</span></li>
+      <li><span class="vl">から見ると</span><span class="jp">外国人<b>から見ると</b>、日本の習慣は不思議なものが多い。</span><span class="en">To foreigners, many Japanese customs seem strange.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="ohajime">
+    <div class="head"><h3>〜をはじめ</h3><p class="mean">Starting with …, including … (a representative example).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + をはじめ</span><span class="chip">をはじめとする + N</span><span class="chip">をはじめとして</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The first noun is the main example of a wider group.</li><li>Often followed by など or 多くの.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">をはじめ</span><span class="jp">東京<b>をはじめ</b>、大きな町はどこも人が多い。</span><span class="en">Big cities, starting with Tokyo, are all crowded.</span></li>
+      <li><span class="vl">をはじめとする N</span><span class="jp">寿司<b>をはじめとする</b>日本料理は、世界中で人気がある。</span><span class="en">Japanese food, sushi above all, is popular worldwide.</span></li>
+      <li><span class="vl">をはじめとして</span><span class="jp">社長<b>をはじめとして</b>、社員全員が参加した。</span><span class="en">All the staff, starting with the president, took part.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="ochuushin">
+    <div class="head"><h3>〜を中心に</h3><p class="mean">Centred on, mainly ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + を中心に(して)</span><span class="chip">N + を中心とする + N</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>The noun is the core: a place, a group of people or a topic.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">を中心に</span><span class="jp">この歌は若者<b>を中心に</b>人気がある。</span><span class="en">This song is popular mainly with young people.</span></li>
+      <li><span class="vl">を中心とする N</span><span class="jp">駅<b>を中心とする</b>地域が開発された。</span><span class="en">The area around the station was developed.</span></li>
+      <li><span class="vl">を中心にして</span><span class="jp">地球は太陽<b>を中心にして</b>回っている。</span><span class="en">The Earth revolves around the sun.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nikawatte">
+    <div class="head"><h3>〜に代わって / に代わり</h3><p class="mean">On behalf of …; in place of, replacing ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + に代わって・に代わり</span><span class="chip">N + に代わる + N</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Two uses: acting for someone, and one thing replacing another.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">on behalf</span><span class="jp">社長<b>に代わって</b>、私がご挨拶します。</span><span class="en">I'll give the greeting on behalf of the president.</span></li>
+      <li><span class="vl">に代わり (formal)</span><span class="jp">父<b>に代わり</b>、母が参加した。</span><span class="en">My mother attended in my father's place.</span></li>
+      <li><span class="vl">replacing</span><span class="jp">最近は手紙<b>に代わって</b>、メールが使われている。</span><span class="en">These days email is used instead of letters.</span></li>
+      <li><span class="vl">に代わる N</span><span class="jp">石油<b>に代わる</b>エネルギーが必要だ。</span><span class="en">We need an energy source to replace oil.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-changeproportion">Change &amp; proportion</h2>  <section class="card" id="nitsurete">
+    <div class="head"><h3>〜につれて</h3><p class="mean">As … (one change brings another).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / N + につれて</span><span class="chip">につれ (formal)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Both halves are gradual changes, not one-off actions or your own will.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">時間がたつ<b>につれて</b>、悲しみも消えていった。</span><span class="en">As time passed, the sadness faded.</span></li>
+      <li><span class="vl">N</span><span class="jp">年齢<b>につれて</b>、考え方も変わる。</span><span class="en">Your way of thinking changes with age.</span></li>
+      <li><span class="vl">につれ</span><span class="jp">町が大きくなる<b>につれ</b>、問題も増えた。</span><span class="en">As the town grew, so did its problems.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nishitagatte">
+    <div class="head"><h3>〜にしたがって</h3><p class="mean">As … (proportional change); in accordance with ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / N + にしたがって・にしたがい</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Two uses: proportional change (like につれて) and following rules or instructions (に従って).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">change</span><span class="jp">上に行く<b>にしたがって</b>、寒くなる。</span><span class="en">The higher you go, the colder it gets.</span></li>
+      <li><span class="vl">formal</span><span class="jp">経済が発展する<b>にしたがい</b>、生活が豊かになった。</span><span class="en">As the economy grew, life became richer.</span></li>
+      <li><span class="vl">follow</span><span class="jp">先生の指示<b>に従って</b>、行動してください。</span><span class="en">Please act according to the teacher's instructions.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="totomoni">
+    <div class="head"><h3>〜とともに</h3><p class="mean">Together with; as (changing along with); at the same time as.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N / V-dict + とともに</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Three uses: with someone (formal と一緒に), change along with, and simultaneous events.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">with</span><span class="jp">家族<b>とともに</b>、新しい生活を始めた。</span><span class="en">I started a new life together with my family.</span></li>
+      <li><span class="vl">change</span><span class="jp">年をとる<b>とともに</b>、体力が落ちる。</span><span class="en">Physical strength declines as you age.</span></li>
+      <li><span class="vl">simultaneous</span><span class="jp">試合終了<b>とともに</b>、雨が降り出した。</span><span class="en">Just as the match ended, it began to rain.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="ippou">
+    <div class="head"><h3>〜一方(で) / 一方だ</h3><p class="mean">While, on the other hand; (一方だ) keeps going one way.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + 一方(で)</span><span class="chip">な-adj な / N である + 一方</span><span class="chip">一方、(sentence start)</span><span class="chip">V-dict + 一方だ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Contrasts two sides of one thing.</li><li>V-dict + 一方だ = keeps getting more (often bad), like ばかりだ.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">contrast</span><span class="jp">便利になった<b>一方で</b>、問題も増えた。</span><span class="en">While things got more convenient, problems increased too.</span></li>
+      <li><span class="vl">two sides</span><span class="jp">彼は仕事に厳しい<b>一方で</b>、家では優しい父親だ。</span><span class="en">He's strict at work, but a gentle father at home.</span></li>
+      <li><span class="vl">sentence start</span><span class="jp">東京は人口が増えている。<b>一方</b>、地方は減っている。</span><span class="en">Tokyo's population is growing. Meanwhile, rural areas are shrinking.</span></li>
+      <li><span class="vl">一方だ</span><span class="jp">物価は上がる<b>一方だ</b>。</span><span class="en">Prices just keep rising.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-judgmentcertainty">Judgment &amp; certainty</h2>  <section class="card" id="nikimatteiru">
+    <div class="head"><h3>〜に決まっている</h3><p class="mean">Surely, definitely, obviously (strong conviction).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + に決まっている</span><span class="chip">N / な-adj + に決まっている (no だ)</span><span class="chip">casual に決まってる</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Subjective and conversational; more certain than に違いない.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">N</span><span class="jp">そんな話、嘘<b>に決まっている</b>。</span><span class="en">A story like that has to be a lie.</span></li>
+      <li><span class="vl">V</span><span class="jp">今から行っても、遅れる<b>に決まっている</b>。</span><span class="en">Even if we go now, we'll definitely be late.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">手作りのほうがおいしい<b>に決まってる</b>。</span><span class="en">Homemade is obviously tastier.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">そんなの無理<b>に決まってる</b>。</span><span class="en">That's obviously impossible.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="osore">
+    <div class="head"><h3>〜おそれがある</h3><p class="mean">There's a risk that … (something bad).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / V-ない + おそれがある</span><span class="chip">N の + おそれがある</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Formal: news, weather reports, official notices.</li><li>Only for bad outcomes.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">台風が来る<b>おそれがある</b>。</span><span class="en">There's a risk a typhoon will come.</span></li>
+      <li><span class="vl">N の</span><span class="jp">明日の朝まで、大雨の<b>おそれがあります</b>。</span><span class="en">Heavy rain is possible until tomorrow morning.</span></li>
+      <li><span class="vl">V-ない</span><span class="jp">このままでは、締め切りに間に合わない<b>おそれがある</b>。</span><span class="en">At this rate, we may miss the deadline.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="kotowanai">
+    <div class="head"><h3>〜ことはない</h3><p class="mean">There's no need to …; (Vた) have never.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + ことはない</span><span class="chip">V-た + ことはない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Reassurance or advice.</li><li>Not the same as ないことはない (it's not that … not).</li><li>With the た-form it means "have never".</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">no need</span><span class="jp">心配する<b>ことはない</b>よ。</span><span class="en">There's no need to worry.</span></li>
+      <li><span class="vl">advice</span><span class="jp">わざわざ来る<b>ことはありません</b>。電話で大丈夫です。</span><span class="en">No need to come all the way, a phone call is fine.</span></li>
+      <li><span class="vl">emotional</span><span class="jp">何もそこまで怒る<b>ことはない</b>でしょう。</span><span class="en">There's no need to get that angry.</span></li>
+      <li><span class="vl">V-た (never)</span><span class="jp">一度も海外に行った<b>ことはない</b>。</span><span class="en">I've never been abroad, not once.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="shikanai">
+    <div class="head"><h3>〜しかない / ほかない</h3><p class="mean">Have no choice but to …; there's only ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + しかない・ほかない・よりほかない</span><span class="chip">N + しかない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Only one option is left.</li><li>ほかない and よりほかない are more formal.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">終電がないから、歩いて帰る<b>しかない</b>。</span><span class="en">There's no last train, so I have to walk home.</span></li>
+      <li><span class="vl">ほかない</span><span class="jp">自分で決めたことだから、頑張る<b>ほかない</b>。</span><span class="en">I decided it myself, so I just have to keep going.</span></li>
+      <li><span class="vl">N</span><span class="jp">財布には千円<b>しかない</b>。</span><span class="en">There's only 1,000 yen in my wallet.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="naiwakeniwa">
+    <div class="head"><h3>〜ないわけにはいかない</h3><p class="mean">Have to, can't not (because of duty or manners).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ない + わけにはいかない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Double negative = must.</li><li>Feels more reluctant than なければならない.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">invitation</span><span class="jp">招待されたから、行かない<b>わけにはいかない</b>。</span><span class="en">I was invited, so I can't not go.</span></li>
+      <li><span class="vl">duty</span><span class="jp">大事な会議だから、出席しない<b>わけにはいかない</b>。</span><span class="en">It's an important meeting, so I have to attend.</span></li>
+      <li><span class="vl">manners</span><span class="jp">ご馳走になったので、お礼を言わない<b>わけにはいかない</b>。</span><span class="en">They treated me, so I have to thank them.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="yougaganai">
+    <div class="head"><h3>〜ようがない / ようもない</h3><p class="mean">There's no way to …, impossible to ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + ようがない</span><span class="chip">N + のしようがない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>No method exists.</li><li>Set phrases: 言いようがない, どうしようもない.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V-stem</span><span class="jp">連絡先が分からないので、連絡し<b>ようがない</b>。</span><span class="en">I don't have his details, so there's no way to contact him.</span></li>
+      <li><span class="vl">N のしようがない</span><span class="jp">こんなに壊れていたら、修理のし<b>ようがない</b>。</span><span class="en">If it's this broken, there's no way to fix it.</span></li>
+      <li><span class="vl">言いようがない</span><span class="jp">何とも言い<b>ようがない</b>ほど、美しい景色だった。</span><span class="en">The view was beautiful beyond words.</span></li>
+      <li><span class="vl">どうしようもない</span><span class="jp">今さら、どうし<b>ようもない</b>。</span><span class="en">There's nothing that can be done now.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="monoda">
+    <div class="head"><h3>〜ものだ</h3><p class="mean">(1) It's natural / you should; (2) used to (nostalgia); (3) strong feeling.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + ものだ</span><span class="chip">V-た + ものだ</span><span class="chip">V-dict + ものではない</span><span class="chip">casual もんだ</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>ものではない = you shouldn't (a social rule).</li><li>V-た + ものだ looks back fondly on the past.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">general truth</span><span class="jp">人は年をとると、昔のことを思い出す<b>ものだ</b>。</span><span class="en">People tend to look back as they get older.</span></li>
+      <li><span class="vl">should</span><span class="jp">人の話は最後まで聞く<b>ものだ</b>。</span><span class="en">You should hear people out.</span></li>
+      <li><span class="vl">shouldn't</span><span class="jp">人の悪口を言う<b>ものではない</b>。</span><span class="en">You shouldn't speak ill of others.</span></li>
+      <li><span class="vl">nostalgia</span><span class="jp">子供の頃は、よくここで遊んだ<b>ものだ</b>。</span><span class="en">I used to play here a lot as a child.</span></li>
+      <li><span class="vl">feeling</span><span class="jp">時間がたつのは早い<b>ものだ</b>。</span><span class="en">Time really flies.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="kotoda">
+    <div class="head"><h3>〜ことだ</h3><p class="mean">The best thing is to …, you should … (advice).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict + ことだ</span><span class="chip">V-ない + ことだ</span><span class="chip">polite ことです</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Advice from someone with experience, usually to a junior.</li><li>Not used toward superiors.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">上手になりたければ、毎日練習する<b>ことだ</b>。</span><span class="en">If you want to improve, practise every day.</span></li>
+      <li><span class="vl">V-ない</span><span class="jp">早く治したいなら、無理をしない<b>ことだ</b>。</span><span class="en">If you want to get better fast, don't overdo it.</span></li>
+      <li><span class="vl">polite</span><span class="jp">合格したいなら、過去問をたくさん解く<b>ことです</b>。</span><span class="en">If you want to pass, do lots of past papers.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tetamaranai">
+    <div class="head"><h3>〜てしょうがない / てたまらない / てならない</h3><p class="mean">Unbearably, extremely (strong feelings or sensations).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-て / い-adj くて / な-adj で + しょうがない・たまらない・ならない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>For your own strong feelings or physical sensations.</li><li>しょうがない is casual; たまらない is a feeling you can't hold back; てならない is formal, often with 気がする.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">い-adj</span><span class="jp">暑く<b>てたまらない</b>。</span><span class="en">It's unbearably hot.</span></li>
+      <li><span class="vl">V</span><span class="jp">試験の結果が気になっ<b>てしょうがない</b>。</span><span class="en">I can't stop worrying about my exam results.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">新しい仕事が心配<b>でたまらない</b>。</span><span class="en">I'm terribly worried about the new job.</span></li>
+      <li><span class="vl">たい</span><span class="jp">家族に会いたく<b>てしょうがない</b>。</span><span class="en">I miss my family so much.</span></li>
+      <li><span class="vl">てならない</span><span class="jp">彼が嘘をついているような気がし<b>てならない</b>。</span><span class="en">I can't shake the feeling he's lying.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-appearancehearsayfeeling">Appearance, hearsay &amp; feeling</h2>  <section class="card" id="youni-mieru">
+    <div class="head"><h3>〜ように見える</h3><p class="mean">Looks like, appears (a visual impression).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + ように見える</span><span class="chip">N の / な-adj な + ように見える</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Often contrasted with reality.</li><li>With adjectives, そうに見える is also common: 元気そうに見える.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">彼は疲れている<b>ように見える</b>。</span><span class="en">He looks tired.</span></li>
+      <li><span class="vl">N の</span><span class="jp">彼女は二十歳の<b>ように見える</b>が、実は三十歳だ。</span><span class="en">She looks twenty, but she's actually thirty.</span></li>
+      <li><span class="vl">い-adj</span><span class="jp">写真では部屋が広い<b>ように見えた</b>。</span><span class="en">In the photos the room looked big.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">この問題は簡単な<b>ように見えて</b>、意外と難しい。</span><span class="en">This problem looks easy but is surprisingly hard.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="ge">
+    <div class="head"><h3>〜げ</h3><p class="mean">Seeming, with an air of (another person's visible feeling).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">い-adj stem + げ</span><span class="chip">な-adj stem + げ</span><span class="chip">V-たい → たげ</span><span class="chip">げな N / げに</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Works like a な-adjective: 寂しげな顔, 楽しげに.</li><li>いい → よさげ, ない → なさげ (casual).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">い-adj</span><span class="jp">彼女は寂し<b>げな</b>顔をしていた。</span><span class="en">She had a lonely look on her face.</span></li>
+      <li><span class="vl">な-adj</span><span class="jp">不安<b>げな</b>様子で、彼は電話を待っていた。</span><span class="en">He waited for the call, looking anxious.</span></li>
+      <li><span class="vl">adverb げに</span><span class="jp">子供たちは楽し<b>げに</b>遊んでいる。</span><span class="en">The children are playing happily.</span></li>
+      <li><span class="vl">たげ</span><span class="jp">彼は何か言いた<b>げ</b>だった。</span><span class="en">He looked like he wanted to say something.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="toiukotoda">
+    <div class="head"><h3>〜ということだ</h3><p class="mean">(1) I hear that …; (2) that means ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">plain + ということだ</span><span class="chip">N / な-adj (だ) + ということだ</span><span class="chip">とのことだ (formal)</span><span class="chip">ってこと (casual)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Hearsay: like そうだ, often more precise.</li><li>Conclusion: つまり〜ということだ.</li><li>とのことです is business-style hearsay.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">hearsay</span><span class="jp">明日の会議は中止だ<b>ということだ</b>。</span><span class="en">I hear tomorrow's meeting is cancelled.</span></li>
+      <li><span class="vl">conclusion</span><span class="jp">返事がないということは、来ない<b>ということだ</b>ろう。</span><span class="en">No reply probably means he's not coming.</span></li>
+      <li><span class="vl">とのことです</span><span class="jp">部長は今日はお休み<b>とのことです</b>。</span><span class="en">I'm told the manager is off today.</span></li>
+      <li><span class="vl">casual</span><span class="jp">つまり、全部やり直し<b>ってこと</b>？</span><span class="en">So you mean we have to redo everything?</span></li>
+    </ul></div>
+  </section>  <section class="card" id="nanka">
+    <div class="head"><h3>〜なんか / など</h3><p class="mean">Things like …; (modest) someone like me; (dismissive) such a thing as.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N + など・なんか</span><span class="chip">N + なんか + negative</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>など is neutral and formal; なんか is the casual version.</li><li>Modest when about yourself, dismissive when about something else.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">examples など</span><span class="jp">飲み物はジュースやお茶<b>など</b>があります。</span><span class="en">We have drinks such as juice and tea.</span></li>
+      <li><span class="vl">modest</span><span class="jp">私<b>なんか</b>、まだまだです。</span><span class="en">Someone like me still has a long way to go.</span></li>
+      <li><span class="vl">dismissive</span><span class="jp">野菜<b>なんか</b>、食べたくない。</span><span class="en">I don't want vegetables or anything like that.</span></li>
+      <li><span class="vl">suggestion</span><span class="jp">プレゼント、花<b>なんか</b>どう？</span><span class="en">For the present, how about flowers or something?</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-actionsattempts">Actions &amp; attempts</h2>  <section class="card" id="youtosuru">
+    <div class="head"><h3>〜ようとする</h3><p class="mean">Try to …; be about to ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-volitional + とする</span><span class="chip">ようとしている</span><span class="chip">ようとした時</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>"Try" usually implies it didn't work.</li><li>"About to" also works for nature: 日が沈もうとしている.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">try</span><span class="jp">ドアを開け<b>ようとした</b>が、開かなかった。</span><span class="en">I tried to open the door, but it wouldn't open.</span></li>
+      <li><span class="vl">about to</span><span class="jp">家を出<b>ようとした</b>時、電話が鳴った。</span><span class="en">Just as I was about to leave, the phone rang.</span></li>
+      <li><span class="vl">nature</span><span class="jp">太陽が沈も<b>うとしている</b>。</span><span class="en">The sun is about to set.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="youtoshinai">
+    <div class="head"><h3>〜ようとしない</h3><p class="mean">Won't, refuses to (about someone else).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-volitional + としない / とはしない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>For a third person who refuses despite being asked.</li><li>For yourself use つもりはない.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">子供が野菜を食べ<b>ようとしない</b>。</span><span class="en">The child refuses to eat vegetables.</span></li>
+      <li><span class="vl">persuasion</span><span class="jp">いくら説明しても、彼は分かろ<b>うとしない</b>。</span><span class="en">However much I explain, he won't try to understand.</span></li>
+      <li><span class="vl">とはしない</span><span class="jp">彼女は自分の間違いを認め<b>ようとはしない</b>。</span><span class="en">She won't admit her mistake.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="sasete">
+    <div class="head"><h3>〜させてください / させていただく</h3><p class="mean">Let me …; (humble) I will ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">causative て + ください・いただけませんか・もらえませんか・いただきます</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Politely asks permission for your own action.</li><li>させていただく is very common in business; overuse sounds stiff.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">request</span><span class="jp">この仕事は私にやら<b>せてください</b>。</span><span class="en">Please let me do this job.</span></li>
+      <li><span class="vl">polite request</span><span class="jp">今日は早く帰ら<b>せていただけませんか</b>。</span><span class="en">Could I possibly leave early today?</span></li>
+      <li><span class="vl">casual</span><span class="jp">ちょっと考え<b>させて</b>。</span><span class="en">Let me think about it.</span></li>
+      <li><span class="vl">humble statement</span><span class="jp">本日はこれで失礼<b>させていただきます</b>。</span><span class="en">I'll take my leave for today.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="temoraitai">
+    <div class="head"><h3>〜てもらいたい / ていただきたい</h3><p class="mean">Want someone to do ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-て + もらいたい・いただきたい</span><span class="chip">V-ないで + もらいたい</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Like てほしい, a little more formal; ていただきたい is polite.</li><li>The person is marked with に.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">一度会っ<b>てもらいたい</b>人がいる。</span><span class="en">There's someone I'd like you to meet.</span></li>
+      <li><span class="vl">polite</span><span class="jp">この書類を確認し<b>ていただきたい</b>のですが。</span><span class="en">I'd like you to check this document.</span></li>
+      <li><span class="vl">negative</span><span class="jp">ここでタバコを吸わない<b>でもらいたい</b>。</span><span class="en">I'd like you not to smoke here.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="youniiu">
+    <div class="head"><h3>〜ように言う / 頼む / 伝える</h3><p class="mean">Tell / ask someone to … (reported request).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-dict / V-ない + ように + 言う・頼む・伝える・注意する</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Indirect version of 「〜てください」と言う.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">言う</span><span class="jp">先生は静かにする<b>ように言った</b>。</span><span class="en">The teacher told us to be quiet.</span></li>
+      <li><span class="vl">頼む</span><span class="jp">友達に、駅まで迎えに来る<b>ように頼んだ</b>。</span><span class="en">I asked my friend to pick me up at the station.</span></li>
+      <li><span class="vl">伝える</span><span class="jp">田中さんに、後で電話する<b>ように伝えてください</b>。</span><span class="en">Please tell Tanaka to call me later.</span></li>
+      <li><span class="vl">ないように</span><span class="jp">医者に、お酒を飲まない<b>ように注意された</b>。</span><span class="en">The doctor warned me not to drink.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="tebakari">
+    <div class="head"><h3>〜てばかりいる</h3><p class="mean">Do nothing but …, always just ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-て + ばかりいる</span><span class="chip">N + ばかり + V</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Usually a complaint.</li><li>Not the same as たばかり (just did).</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">V</span><span class="jp">弟はゲームをし<b>てばかりいる</b>。</span><span class="en">My brother does nothing but play games.</span></li>
+      <li><span class="vl">past</span><span class="jp">休みの間、寝<b>てばかりいた</b>。</span><span class="en">I did nothing but sleep over the holidays.</span></li>
+      <li><span class="vl">N ばかり</span><span class="jp">彼は肉<b>ばかり</b>食べている。</span><span class="en">He eats nothing but meat.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="kiru">
+    <div class="head"><h3>〜きる / きれる / きれない</h3><p class="mean">Do completely; can / can't finish.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + きる・きれる・きれない</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>きる: finish completely or reach the limit (疲れきる).</li><li>きれない: can't finish, can't count.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">きる</span><span class="jp">一日で本を読み<b>きった</b>。</span><span class="en">I read the whole book in one day.</span></li>
+      <li><span class="vl">limit</span><span class="jp">走った後、疲れ<b>きって</b>動けなかった。</span><span class="en">After the run I was too exhausted to move.</span></li>
+      <li><span class="vl">きれない</span><span class="jp">こんなにたくさん、一人では食べ<b>きれない</b>。</span><span class="en">I can't eat all this by myself.</span></li>
+      <li><span class="vl">数えきれない</span><span class="jp">空には数え<b>きれない</b>ほどの星があった。</span><span class="en">There were countless stars in the sky.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="dasu">
+    <div class="head"><h3>〜だす</h3><p class="mean">Suddenly start ….</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + だす</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>A sudden or uncontrolled start (rain, crying, laughing).</li><li>For a planned start use はじめる: ×勉強しだすつもり.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">nature</span><span class="jp">急に雨が降り<b>だした</b>。</span><span class="en">It suddenly started raining.</span></li>
+      <li><span class="vl">emotion</span><span class="jp">子供が突然泣き<b>だした</b>。</span><span class="en">The child suddenly burst into tears.</span></li>
+      <li><span class="vl">vs はじめる</span><span class="jp">来月から日本語を勉強し<b>はじめる</b>。</span><span class="en">I'll start studying Japanese next month (planned: はじめる).</span></li>
+    </ul></div>
+  </section>  <section class="card" id="au">
+    <div class="head"><h3>〜合う</h3><p class="mean">Do to each other, mutually.</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ます stem + 合う</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Both sides do the same action.</li><li>Common: 助け合う, 話し合う, 知り合う, 励まし合う.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">助け合う</span><span class="jp">二人は助け<b>合って</b>いる。</span><span class="en">The two of them help each other.</span></li>
+      <li><span class="vl">話し合う</span><span class="jp">この問題について、みんなで話し<b>合いましょう</b>。</span><span class="en">Let's all discuss this problem together.</span></li>
+      <li><span class="vl">知り合う</span><span class="jp">彼とは大学で知り<b>合った</b>。</span><span class="en">I got to know him at university.</span></li>
+    </ul></div>
+  </section>
+  <h2 id="g-writtenstyle">Written style</h2>  <section class="card" id="dearu">
+    <div class="head"><h3>〜である</h3><p class="mean">Is (written-style だ).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">N / な-adj + である</span><span class="chip">であった</span><span class="chip">ではない</span><span class="chip">であり</span><span class="chip">であろう</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Used in essays, newspapers and academic writing.</li><li>であり connects clauses; であろう = probably.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">present</span><span class="jp">日本は島国<b>である</b>。</span><span class="en">Japan is an island nation.</span></li>
+      <li><span class="vl">past</span><span class="jp">彼は有名な作家<b>であった</b>。</span><span class="en">He was a famous writer.</span></li>
+      <li><span class="vl">であり</span><span class="jp">東京は日本の首都<b>であり</b>、最大の都市でもある。</span><span class="en">Tokyo is Japan's capital and also its largest city.</span></li>
+      <li><span class="vl">であろう</span><span class="jp">この問題の解決は困難<b>であろう</b>。</span><span class="en">Solving this problem will probably be difficult.</span></li>
+    </ul></div>
+  </section>  <section class="card" id="zuni">
+    <div class="head"><h3>〜ず(に)</h3><p class="mean">Without …; not (written negative).</p></div>
+    <div class="row"><span class="k">Form</span><div class="chips"><span class="chip">V-ない stem + ず(に)</span><span class="chip">する → せず(に)</span></div></div>
+    <div class="row"><span class="k">Notes</span><ul class="notes"><li>Formal version of ないで / なくて.</li><li>する becomes せず, not しず.</li></ul></div>
+    <div class="row"><span class="k">Uses</span><ul class="ex">
+      <li><span class="vl">without</span><span class="jp">朝ご飯を食べ<b>ずに</b>、学校へ行った。</span><span class="en">I went to school without eating breakfast.</span></li>
+      <li><span class="vl">せず</span><span class="jp">勉強<b>せずに</b>試験を受けた。</span><span class="en">I took the exam without studying.</span></li>
+      <li><span class="vl">connecting</span><span class="jp">何も言わ<b>ず</b>、部屋を出ていった。</span><span class="en">He left the room without a word.</span></li>
+      <li><span class="vl">reason</span><span class="jp">雨が止ま<b>ず</b>、試合は中止になった。</span><span class="en">The rain didn't stop, so the match was called off.</span></li>
+    </ul></div>
+  </section>
+</div>
+</body>
+</html>
