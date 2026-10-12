@@ -14,7 +14,8 @@ Going through a textbook once doesn't mean every point has stuck. This site list
 | --- | --- |
 | [Checklist](https://bunpou-check-list.vercel.app/) | About 120 N5 and N4 grammar points, grouped by topic, each with meaning and an example. Tick a point once you can use it yourself. Includes a progress bar per level, a level filter, search and "Hide done". |
 | [Verb conjugation](https://bunpou-check-list.vercel.app/conjugations.html) | Cheat sheet for every verb type (う-verbs, る-verbs, する, 来る, 行く) across all N5/N4 forms: plain and polite, present and past, positive and negative, て-form, potential, passive, causative, conditionals and commands. Practice mode hides the answers. |
-| [N5 gaps](https://bunpou-check-list.vercel.app/n5-open-points.html) | Explanations with three example sentences for each N5 point that was still unticked. |
+| [N5 gaps](https://bunpou-check-list.vercel.app/n5-open-points.html) | Explanations with three example sentences for each N5 point that was still unticked. Done ✓ |
+| [N4 gaps](https://bunpou-check-list.vercel.app/n4-open-points.html) | The same for the 22 N4 points still open: て-form combinations, conditionals, guessing and hearsay, decisions and changes, keigo and more. |
 
 ## How I use it
 
@@ -33,6 +34,7 @@ Plain HTML, CSS and JavaScript with no build step and no dependencies (apart fro
 index.html             grammar checklist
 conjugations.html      verb conjugation cheat sheet
 n5-open-points.html    explanations for open N5 points
+n4-open-points.html    explanations for open N4 points
 ```
 
 The grammar points come from two practice stories written for N5 (京都の一日) and N4 (大阪の新しい生活). Grammar lists differ between sources, so this covers the core points rather than every list ever published.

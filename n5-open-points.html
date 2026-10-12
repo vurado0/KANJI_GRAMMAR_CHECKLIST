@@ -31,6 +31,8 @@ nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)
 nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
 nav.site a:hover{color:var(--fg);background:var(--surface)}
 nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a.done s{text-decoration-thickness:1.5px}
+nav.site a.done .tick{margin-left:4px;color:var(--ai)}
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0 0;text-wrap:balance}
 h1 span{color:var(--shu)}
 .lead{color:var(--muted);margin:6px 0 0;max-width:60ch}
@@ -59,7 +61,8 @@ td:first-child{font-family:var(--f-jp);font-weight:700;white-space:nowrap}
   <nav class="site" aria-label="Site">
     <a href="./">Checklist</a>
     <a href="conjugations.html">Verb conjugation</a>
-    <a href="n5-open-points.html" aria-current="page">N5 gaps</a>
+    <a href="n5-open-points.html" class="done" title="Done" aria-current="page"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n4-open-points.html">N4 gaps</a>
   </nav>
   <h1>N5 Grammar <span>Open Points</span></h1>
   <p class="lead">The 12 N5 grammar points still unticked on the checklist, each with an explanation and three examples.</p>

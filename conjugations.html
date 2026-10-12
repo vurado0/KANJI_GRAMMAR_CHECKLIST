@@ -31,6 +31,8 @@ nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)
 nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
 nav.site a:hover{color:var(--fg);background:var(--surface)}
 nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a.done s{text-decoration-thickness:1.5px}
+nav.site a.done .tick{margin-left:4px;color:var(--ai)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
 
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:18px 0 0;text-wrap:balance}
@@ -106,7 +108,8 @@ ruby rt{font-size:.55em;color:var(--muted)}
   <nav class="site" aria-label="Site">
     <a href="./">Checklist</a>
     <a href="conjugations.html" aria-current="page">Verb conjugation</a>
-    <a href="n5-open-points.html">N5 gaps</a>
+    <a href="n5-open-points.html" class="done" title="Done"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n4-open-points.html">N4 gaps</a>
   </nav>
 
   <h1>活用表 <span>Verb Conjugation</span></h1>

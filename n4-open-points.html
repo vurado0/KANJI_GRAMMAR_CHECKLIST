@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N4 Grammar – Open Points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same visual system as the checklist and the N5 gaps page */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2030; --muted:#5c6478; --line:#dde1ea;
+  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"IBM Plex Sans","Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-jp:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 64px}
+a{color:var(--ai)}
+a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:8px}
+nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
+nav.site a:hover{color:var(--fg);background:var(--surface)}
+nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a.done s{text-decoration-thickness:1.5px}
+nav.site a.done .tick{margin-left:4px;color:var(--ai)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0 0;text-wrap:balance}
+h1 span{color:var(--ai)}
+.lead{color:var(--muted);margin:6px 0 0;max-width:60ch}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+nav.toc a{font:500 13px var(--f-jp);text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 11px;border-radius:999px}
+nav.toc a:hover{border-color:var(--ai);color:var(--ai)}
+h2{font:600 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:34px 0 10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;scroll-margin-top:16px}
+.card+.card{margin-top:12px}
+h3{font-family:var(--f-jp);font-weight:700;font-size:18px;margin:0}
+.card p{margin:0;max-width:65ch}
+ul.ex{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}
+ul.ex li{display:grid;gap:0;padding-left:12px;border-left:2px solid var(--ai-soft)}
+.jp{font-family:var(--f-jp);font-size:16px}
+.jp b{color:var(--ai);font-weight:700}
+.en{color:var(--muted);font-size:14px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-family:var(--f-jp)}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:var(--f-body);font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+td:first-child{font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site" aria-label="Site">
+    <a href="./">Checklist</a>
+    <a href="conjugations.html">Verb conjugation</a>
+    <a href="n5-open-points.html" class="done" title="Done"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n4-open-points.html" aria-current="page">N4 gaps</a>
+  </nav>
+  <h1>N4 Grammar <span>Open Points</span></h1>
+  <p class="lead">The 22 N4 grammar points still unticked on the checklist, each with an explanation and three examples.</p>
+  <nav class="toc" aria-label="Grammar points">
+    <a href="#teoku">ておく</a><a href="#tekuru">てくる</a><a href="#teiku">ていく</a><a href="#tokoro">ところ</a><a href="#itadaku">いただく</a><a href="#ba">ば</a><a href="#bayokatta">ばよかった</a><a href="#to">と</a><a href="#nara">なら</a><a href="#youni">ように</a><a href="#sou-look">そう (look)</a><a href="#sou-hear">そうだ (heard)</a><a href="#rashii">らしい</a><a href="#youda">ようだ</a><a href="#hazu">はず</a><a href="#kotoninaru">ことになる</a><a href="#kotonisuru">ことにする</a><a href="#younisuru">ようにする</a><a href="#younininaru">ようになる</a><a href="#madeni">までに</a><a href="#aida">間</a><a href="#keigo">敬語</a>
+  </nav>
+
+  <h2>て-form combinations</h2>  <section class="card" id="teoku">
+    <h3>〜ておく</h3>
+    <p>Do something in advance, as preparation, or leave something in a state on purpose. In casual speech it shrinks to 〜とく: 買っとく.</p>
+    <ul class="ex">
+      <li><span class="jp">旅行の前に、ホテルを<b>予約しておきます</b>。</span><span class="en">I&#x27;ll book the hotel before the trip.</span></li>
+      <li><span class="jp">会議の資料を<b>読んでおいてください</b>。</span><span class="en">Please read the meeting documents beforehand.</span></li>
+      <li><span class="jp">窓は<b>開けておいても</b>いいですか。</span><span class="en">May I leave the window open?</span></li>
+    </ul>
+  </section>  <section class="card" id="tekuru">
+    <h3>〜てくる</h3>
+    <p>Three uses: a change that has built up until now, going somewhere and coming back, and an action moving toward the speaker.</p>
+    <ul class="ex">
+      <li><span class="jp">だんだん<b>寒くなってきました</b>。</span><span class="en">It has been getting colder.</span></li>
+      <li><span class="jp">ちょっとジュースを<b>買ってきます</b>。</span><span class="en">I&#x27;ll go buy some juice (and come back).</span></li>
+      <li><span class="jp">弟が<b>走ってきました</b>。</span><span class="en">My younger brother came running (toward me).</span></li>
+    </ul>
+  </section>  <section class="card" id="teiku">
+    <h3>〜ていく</h3>
+    <p>The mirror of てくる: a change continuing from now into the future, an action moving away from the speaker, or taking something or someone along.</p>
+    <ul class="ex">
+      <li><span class="jp">日本に住む外国人は<b>増えていく</b>でしょう。</span><span class="en">The number of foreigners living in Japan will probably keep growing.</span></li>
+      <li><span class="jp">鳥が空へ<b>飛んでいきました</b>。</span><span class="en">The bird flew away into the sky.</span></li>
+      <li><span class="jp">傘を<b>持っていって</b>ください。</span><span class="en">Please take an umbrella with you.</span></li>
+    </ul>
+  </section>  <section class="card" id="tokoro">
+    <h3>〜ているところ</h3>
+    <p>Where you are in an action. Dictionary form + ところ: about to do. ている + ところ: in the middle of doing. た-form + ところ: just finished.</p>
+    <ul class="ex">
+      <li><span class="jp">今、晩ご飯を<b>作っているところです</b>。</span><span class="en">I&#x27;m in the middle of making dinner.</span></li>
+      <li><span class="jp">これから<b>出かけるところです</b>。</span><span class="en">I&#x27;m just about to go out.</span></li>
+      <li><span class="jp">ちょうど駅に<b>着いたところです</b>。</span><span class="en">I&#x27;ve just arrived at the station.</span></li>
+    </ul>
+  </section>
+  <h2>Giving &amp; receiving</h2>  <section class="card" id="itadaku">
+    <h3>〜ていただく / 〜てくださる</h3>
+    <p>Polite versions of てもらう and てくれる, used for someone above you. With いただく, you are the subject and the giver takes に. With くださる, the giver is the subject and takes が. 〜ていただけませんか is a very polite request.</p>
+    <ul class="ex">
+      <li><span class="jp">先生に作文を<b>直していただきました</b>。</span><span class="en">The teacher kindly corrected my essay.</span></li>
+      <li><span class="jp">部長が駅まで<b>送ってくださいました</b>。</span><span class="en">The manager kindly drove me to the station.</span></li>
+      <li><span class="jp">少し<b>待っていただけませんか</b>。</span><span class="en">Could you please wait a moment?</span></li>
+    </ul>
+  </section>
+  <h2>Conditionals</h2>  <section class="card" id="ba">
+    <h3>〜ば</h3>
+    <p>A general &quot;if&quot;. う-verbs: え-row + ば (行けば). る-verbs: れば (食べれば). い-adjectives: ければ (安ければ). な-adjectives and nouns: なら. 〜ばいい asks for or gives advice: &quot;what should I…?&quot;</p>
+    <ul class="ex">
+      <li><span class="jp"><b>安ければ</b>、買います。</span><span class="en">If it&#x27;s cheap, I&#x27;ll buy it.</span></li>
+      <li><span class="jp">毎日<b>練習すれば</b>、上手になります。</span><span class="en">If you practise every day, you&#x27;ll get better.</span></li>
+      <li><span class="jp">何を<b>持っていけばいい</b>ですか。</span><span class="en">What should I bring?</span></li>
+    </ul>
+  </section>  <section class="card" id="bayokatta">
+    <h3>〜ばよかった</h3>
+    <p>&quot;I should have…&quot;: regret about something you didn&#x27;t do. For something you did and regret: 〜なければよかった.</p>
+    <ul class="ex">
+      <li><span class="jp">もっと早く<b>起きればよかった</b>。</span><span class="en">I should have got up earlier.</span></li>
+      <li><span class="jp">傘を<b>持ってくればよかった</b>です。</span><span class="en">I should have brought an umbrella.</span></li>
+      <li><span class="jp">あの時、<b>言わなければよかった</b>。</span><span class="en">I shouldn&#x27;t have said it then.</span></li>
+    </ul>
+  </section>  <section class="card" id="to">
+    <h3>〜と</h3>
+    <p>&quot;Whenever X, Y follows automatically&quot;: nature, machines, directions, habits. Uses the dictionary form. The second half can&#x27;t be a request, an invitation or your own will.</p>
+    <ul class="ex">
+      <li><span class="jp">春に<b>なると</b>、桜が咲きます。</span><span class="en">When spring comes, the cherry blossoms bloom.</span></li>
+      <li><span class="jp">このボタンを<b>押すと</b>、ドアが開きます。</span><span class="en">Press this button and the door opens.</span></li>
+      <li><span class="jp">二つ目の角を右に<b>曲がると</b>、駅があります。</span><span class="en">Turn right at the second corner and you&#x27;ll see the station.</span></li>
+    </ul>
+  </section>  <section class="card" id="nara">
+    <h3>〜なら</h3>
+    <p>&quot;If it&#x27;s about X&quot; or &quot;if that&#x27;s the case&quot;. Picks up a topic or something the other person said and gives advice or an opinion on it.</p>
+    <ul class="ex">
+      <li><span class="jp">京都に<b>行くなら</b>、新幹線が便利ですよ。</span><span class="en">If you&#x27;re going to Kyoto, the Shinkansen is convenient.</span></li>
+      <li><span class="jp"><b>寿司なら</b>、あの店がおいしいです。</span><span class="en">If it&#x27;s sushi you want, that shop is good.</span></li>
+      <li><span class="jp">時間が<b>ないなら</b>、明日でもいいですよ。</span><span class="en">If you don&#x27;t have time, tomorrow is fine too.</span></li>
+    </ul>
+  </section>
+  <h2>Reasons &amp; contrast</h2>  <section class="card" id="youni">
+    <h3>〜ように</h3>
+    <p>&quot;So that&quot;. Used after verbs you can&#x27;t directly control: potential forms, negatives, and things like 聞こえる or 忘れる. With a deliberate action and the same subject, use ために instead.</p>
+    <ul class="ex">
+      <li><span class="jp"><b>忘れないように</b>、メモを書きました。</span><span class="en">I wrote a note so I wouldn&#x27;t forget.</span></li>
+      <li><span class="jp">後ろの人にも<b>聞こえるように</b>、大きい声で話してください。</span><span class="en">Please speak up so the people at the back can hear too.</span></li>
+      <li><span class="jp">風邪を<b>ひかないように</b>、暖かくして寝ます。</span><span class="en">I&#x27;ll stay warm in bed so I don&#x27;t catch a cold.</span></li>
+    </ul>
+  </section>
+  <h2>Guessing &amp; hearsay</h2>  <section class="card" id="sou-look">
+    <h3>〜そう (appearance)</h3>
+    <p>&quot;Looks like&quot;, based on what you see. ます-stem or adjective without い/な + そう. いい → よさそう, ない → なさそう. With verbs it means &quot;about to happen&quot;. Don&#x27;t use it for things that are obvious at a glance: not きれいそう for something you can see is pretty.</p>
+    <ul class="ex">
+      <li><span class="jp">このケーキは<b>おいしそう</b>ですね。</span><span class="en">This cake looks delicious.</span></li>
+      <li><span class="jp">雨が<b>降りそう</b>です。</span><span class="en">It looks like it&#x27;s going to rain.</span></li>
+      <li><span class="jp">田中さんは<b>元気そう</b>でした。</span><span class="en">Tanaka looked well.</span></li>
+    </ul>
+  </section>  <section class="card" id="sou-hear">
+    <h3>〜そうだ (hearsay)</h3>
+    <p>&quot;I heard that&quot;. Plain form + そうだ, and nothing is dropped: 降るそう, 静かだそう. Often paired with 〜によると for the source. Compare 降りそう (looks like rain) and 降るそう (I heard it will rain).</p>
+    <ul class="ex">
+      <li><span class="jp">天気予報によると、明日は雪が<b>降るそうです</b>。</span><span class="en">According to the forecast, it will snow tomorrow.</span></li>
+      <li><span class="jp">山田さんは来月<b>結婚するそうです</b>。</span><span class="en">I heard Yamada is getting married next month.</span></li>
+      <li><span class="jp">あの店のラーメンはとても<b>おいしいそうです</b>。</span><span class="en">I hear that shop&#x27;s ramen is really good.</span></li>
+    </ul>
+  </section>  <section class="card" id="rashii">
+    <h3>〜らしい</h3>
+    <p>&quot;Apparently&quot;, based on information you got indirectly. Plain form + らしい; nouns and な-adjectives drop だ. Noun + らしい can also mean &quot;typical of&quot;: 春らしい, 男らしい.</p>
+    <ul class="ex">
+      <li><span class="jp">田中さんは会社を<b>やめたらしい</b>です。</span><span class="en">Apparently Tanaka quit the company.</span></li>
+      <li><span class="jp">あのレストランは予約が<b>必要らしい</b>よ。</span><span class="en">Apparently that restaurant needs a reservation.</span></li>
+      <li><span class="jp">今日は<b>春らしい</b>暖かい日ですね。</span><span class="en">Today is a warm, real spring day.</span></li>
+    </ul>
+  </section>  <section class="card" id="youda">
+    <h3>〜ようだ / 〜みたい</h3>
+    <p>&quot;It seems&quot;, based on your own observation. ようだ is more formal: noun + の, な-adjective + な. みたい is casual and attaches to plain forms, nouns and な-adjectives directly. Both also make comparisons: 〜のように, 〜みたいに (&quot;like&quot;).</p>
+    <ul class="ex">
+      <li><span class="jp">誰かが<b>来たようです</b>。</span><span class="en">It seems someone has come.</span></li>
+      <li><span class="jp">道が<b>混んでいるみたい</b>だね。</span><span class="en">Looks like the roads are busy.</span></li>
+      <li><span class="jp">彼女は<b>日本人のように</b>日本語を話します。</span><span class="en">She speaks Japanese like a Japanese person.</span></li>
+    </ul>
+  </section>  <section class="card" id="hazu">
+    <h3>〜はず</h3>
+    <p>&quot;Should be&quot;, a logical expectation based on facts you know. Plain form + はず; noun + の, な-adjective + な. はずがない means &quot;there&#x27;s no way that…&quot;.</p>
+    <ul class="ex">
+      <li><span class="jp">荷物は明日<b>届くはずです</b>。</span><span class="en">The package should arrive tomorrow.</span></li>
+      <li><span class="jp">十年日本に住んでいたから、日本語が<b>上手なはずです</b>。</span><span class="en">He lived in Japan for ten years, so his Japanese should be good.</span></li>
+      <li><span class="jp">鍵はかばんの中に<b>あるはず</b>なのに、ありません。</span><span class="en">The key should be in my bag, but it isn&#x27;t.</span></li>
+    </ul>
+  </section>
+  <h2>Decisions &amp; changes</h2>  <section class="card" id="kotoninaru">
+    <h3>〜ことになる</h3>
+    <p>&quot;It has been decided&quot; by someone else or by circumstances. 〜ことになっている describes a rule or standing arrangement.</p>
+    <ul class="ex">
+      <li><span class="jp">来月、大阪に<b>転勤することになりました</b>。</span><span class="en">It&#x27;s been decided that I&#x27;ll transfer to Osaka next month.</span></li>
+      <li><span class="jp">会議は三時から<b>始めることになりました</b>。</span><span class="en">It&#x27;s been decided that the meeting starts at three.</span></li>
+      <li><span class="jp">日本では二十歳からお酒が<b>飲めることになっています</b>。</span><span class="en">In Japan, the rule is that you can drink from age 20.</span></li>
+    </ul>
+  </section>  <section class="card" id="kotonisuru">
+    <h3>〜ことにする</h3>
+    <p>&quot;I decide to&quot;, your own decision. 〜ことにしている describes a habit you have chosen.</p>
+    <ul class="ex">
+      <li><span class="jp">今年から毎日日記を<b>書くことにしました</b>。</span><span class="en">I decided to write a diary every day from this year.</span></li>
+      <li><span class="jp">疲れたので、今日は<b>出かけないことにします</b>。</span><span class="en">I&#x27;m tired, so I&#x27;ve decided not to go out today.</span></li>
+      <li><span class="jp">毎朝<b>走ることにしています</b>。</span><span class="en">I make a point of running every morning.</span></li>
+    </ul>
+  </section>  <section class="card" id="younisuru">
+    <h3>〜ようにする</h3>
+    <p>&quot;Make an effort to&quot; or &quot;make sure to&quot;. 〜ようにしている is an ongoing effort. 〜ようにしてください is a soft instruction.</p>
+    <ul class="ex">
+      <li><span class="jp">毎日野菜を<b>食べるようにしています</b>。</span><span class="en">I try to eat vegetables every day.</span></li>
+      <li><span class="jp">夜遅くまでゲームを<b>しないようにします</b>。</span><span class="en">I&#x27;ll try not to play games late into the night.</span></li>
+      <li><span class="jp">授業に<b>遅れないようにしてください</b>。</span><span class="en">Please make sure you&#x27;re not late for class.</span></li>
+    </ul>
+  </section>  <section class="card" id="younininaru">
+    <h3>〜ようになる</h3>
+    <p>&quot;Come to&quot; or &quot;reach the point where&quot;: a change in ability or habit. Often with potential forms. The negative change is 〜なくなる: 食べなくなった.</p>
+    <ul class="ex">
+      <li><span class="jp">日本語の新聞が<b>読めるようになりました</b>。</span><span class="en">I&#x27;ve become able to read Japanese newspapers.</span></li>
+      <li><span class="jp">最近、朝早く<b>起きるようになりました</b>。</span><span class="en">I&#x27;ve started getting up early recently.</span></li>
+      <li><span class="jp">弟は野菜を<b>食べるようになりました</b>。</span><span class="en">My younger brother has started eating vegetables.</span></li>
+    </ul>
+  </section>
+  <h2>Other</h2>  <section class="card" id="madeni">
+    <h3>〜までに</h3>
+    <p>&quot;By&quot; a deadline: the action happens once, at some point before then. まで (&quot;until&quot;) means the action continues the whole time up to that point.</p>
+    <ul class="ex">
+      <li><span class="jp">レポートは金曜日<b>までに</b>出してください。</span><span class="en">Please hand in the report by Friday.</span></li>
+      <li><span class="jp">七時<b>までに</b>家に帰ります。</span><span class="en">I&#x27;ll be home by seven.</span></li>
+      <li><span class="jp">三時<b>まで</b>図書館で勉強しました。</span><span class="en">I studied in the library until three. (compare: まで)</span></li>
+    </ul>
+  </section>  <section class="card" id="aida">
+    <h3>〜間 / 〜間に</h3>
+    <p>&quot;While&quot; or &quot;during&quot;. 間 alone: the action lasts the whole period. 間に: the action happens at one point within the period.</p>
+    <ul class="ex">
+      <li><span class="jp">夏休みの<b>間</b>、ずっと国に帰っていました。</span><span class="en">I was back home for the whole summer holidays.</span></li>
+      <li><span class="jp">電車を待っている<b>間</b>、本を読みました。</span><span class="en">I read a book while waiting for the train.</span></li>
+      <li><span class="jp">母が寝ている<b>間に</b>、部屋を掃除しました。</span><span class="en">I cleaned the room while my mother was asleep.</span></li>
+    </ul>
+  </section>  <section class="card" id="keigo">
+    <h3>Honorific / humble (敬語)</h3>
+    <p>尊敬語 (honorific) raises the other person and is used for their actions. 謙譲語 (humble) lowers yourself and is used for your own actions toward them. Regular verbs: お + stem + になる (honorific), お + stem + する (humble). Common verbs have special forms:</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Verb</th><th>Honorific</th><th>Humble</th></tr></thead>
+        <tbody>
+          <tr><td>行く / 来る / いる</td><td>いらっしゃる</td><td>参る / 参る / おる</td></tr>
+          <tr><td>言う</td><td>おっしゃる</td><td>申す</td></tr>
+          <tr><td>食べる / 飲む</td><td>召し上がる</td><td>いただく</td></tr>
+          <tr><td>見る</td><td>ご覧になる</td><td>拝見する</td></tr>
+          <tr><td>する</td><td>なさる</td><td>いたす</td></tr>
+          <tr><td>知っている</td><td>ご存じだ</td><td>存じている</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="ex">
+      <li><span class="jp">社長はもう<b>お帰りになりました</b>。</span><span class="en">The president has already gone home.</span></li>
+      <li><span class="jp">先生は何と<b>おっしゃいました</b>か。</span><span class="en">What did the teacher say?</span></li>
+      <li><span class="jp">お荷物を<b>お持ちします</b>。</span><span class="en">Let me carry your luggage.</span></li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>

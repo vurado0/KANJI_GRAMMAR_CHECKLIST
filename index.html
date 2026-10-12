@@ -38,8 +38,15 @@ nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)
 nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
 nav.site a:hover{color:var(--fg);background:var(--surface)}
 nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a.done s{text-decoration-thickness:1.5px}
+nav.site a.done .tick{margin-left:4px;color:var(--ai)}
 nav.site a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
-.practice{margin-left:auto;font:600 14px var(--f-body);text-decoration:none;color:var(--shu);border:1px solid var(--shu);background:var(--surface);padding:7px 14px;border-radius:999px;white-space:nowrap}
+.practice-group{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.practice.done{color:var(--muted);border-color:var(--line)}
+.practice.done s{text-decoration-thickness:1.5px}
+.practice.done .tick{color:var(--ai);margin-left:6px}
+.practice.done:hover{background:var(--surface);color:var(--fg);border-color:var(--muted)}
+.practice{font:600 14px var(--f-body);text-decoration:none;color:var(--shu);border:1px solid var(--shu);background:var(--surface);padding:7px 14px;border-radius:999px;white-space:nowrap}
 .practice:hover{background:var(--shu);color:var(--surface)}
 .practice:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -85,7 +92,8 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
   <nav class="site" aria-label="Site">
     <a href="./" aria-current="page">Checklist</a>
     <a href="conjugations.html">Verb conjugation</a>
-    <a href="n5-open-points.html">N5 gaps</a>
+    <a href="n5-open-points.html" class="done" title="Done"><s>N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+    <a href="n4-open-points.html">N4 gaps</a>
   </nav>
   <header>
     <h1>文法チェックリスト <span>N5 · N4</span></h1>
@@ -97,7 +105,10 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
       <button class="tab" id="t-all" data-lv="all" aria-pressed="true">All</button>
       <button class="tab" id="t-n5" data-lv="N5" aria-pressed="false">N5</button>
       <button class="tab" id="t-n4" data-lv="N4" aria-pressed="false">N4</button>
-      <a class="practice" href="n5-open-points.html">Practice N5 gaps →</a>
+      <div class="practice-group">
+        <a class="practice done" href="n5-open-points.html" title="Done"><s>Practice N5 gaps</s><span class="tick" aria-label="done">✓</span></a>
+        <a class="practice" href="n4-open-points.html">Practice N4 gaps →</a>
+      </div>
     </div>
     <div class="tools">
       <input type="search" id="q" placeholder="Search: ても, passive, because…" aria-label="Search grammar points">
