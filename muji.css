@@ -128,9 +128,10 @@ a{color:var(--muji)}
 .tmr-row button.pre{font-family:var(--f-num);letter-spacing:.06em;padding:6px 10px}
 .tmr-row button.pre[aria-pressed="true"]{border-color:var(--muji);color:var(--muji)}
 .tmr-row input{width:72px;cursor:text;text-align:center}
-.tmr-row label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.tmr-panel .tmr-row label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
 .tmr-set{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:12px}
-.tmr-set label{display:grid;gap:2px;font-size:11px;color:var(--muted);letter-spacing:.04em}
+.tmr-panel label{padding:0;grid-template-columns:none;align-items:initial;cursor:default}
+.tmr-set label{display:grid;gap:4px;font-size:11px;color:var(--muted);letter-spacing:.04em}
 .tmr-set input{font:500 14px var(--f-num);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 8px;border-radius:var(--r);width:100%}
 .tmr-laps{max-height:120px;overflow:auto;margin:0;padding:0;list-style:none;border:0;background:none;font:400 13px var(--f-num);letter-spacing:.06em}
 .tmr-laps li{display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid var(--line)}
