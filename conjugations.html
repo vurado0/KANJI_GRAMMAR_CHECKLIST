@@ -6,7 +6,7 @@
 <title>Verb Conjugation Cheat Sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap">
 <style>
 /* Same visual system as the checklist; wider column so the big table has room. Table: forms down, verbs across, both headers sticky */
 :root{
@@ -102,6 +102,7 @@ ruby rt{font-size:.55em;color:var(--muted)}
 .practicing td.c:not(.shown){background:repeating-linear-gradient(-45deg,transparent 0 6px,var(--band) 6px 7px)}
 .foot{margin-top:28px;color:var(--muted);font-size:13px}
 </style>
+<link rel="stylesheet" href="muji.css">
 </head>
 <body>
 <div class="wrap">
@@ -311,5 +312,6 @@ big.addEventListener("click",e=>{if(!practice)return;const td=e.target.closest("
 setPressed("[data-g]","g",grp); setPressed("[data-l]","l",lvl);
 render();
 </script>
+<script src="timer.js" defer></script>
 </body>
 </html>

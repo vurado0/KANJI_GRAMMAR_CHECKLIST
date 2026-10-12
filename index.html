@@ -6,7 +6,7 @@
 <title>Bunpou Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap">
 <style>
 /* Layout: one narrow study column; sticky level switcher + progress; grouped checklists like a 問題集 */
 :root{
@@ -90,6 +90,7 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
 .foot{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px}
 .danger{color:var(--shu);border-color:var(--line)}
 </style>
+<link rel="stylesheet" href="muji.css">
 </head>
 <body>
 
@@ -101,9 +102,16 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
     <a href="n4-open-points.html" class="done" title="Done"><s>N4 gaps</s><span class="tick" aria-label="done">✓</span></a>
     <a href="n3-open-points.html">N3 gaps</a>
   </nav>
-  <header>
-    <h1>文法チェックリスト <span class="lv5">N5</span><span class="sep">·</span><span class="lv4">N4</span><span class="sep">·</span><span class="lv3">N3</span><span class="sep">·</span><span class="lv2">N2</span></h1>
+  <header class="hero">
+    <div class="kicker"><span class="mark">文法</span>JLPT GRAMMAR CHECKLIST</div>
+    <h1>文法チェックリスト</h1>
     <p>All JLPT grammar from N5 to N2 in one list. Tick a point once you can use it in your own sentence, then close the gaps before moving up a level.</p>
+    <div class="levels">
+      <button class="lvcol" data-lv="N5" aria-pressed="false"><span class="num">N5</span><span class="jpn">入門</span><span class="cnt" id="h-N5">0 / 0</span><span class="bar2"><i id="hb-N5"></i></span></button>
+      <button class="lvcol" data-lv="N4" aria-pressed="false"><span class="num">N4</span><span class="jpn">初級</span><span class="cnt" id="h-N4">0 / 0</span><span class="bar2"><i id="hb-N4"></i></span></button>
+      <button class="lvcol" data-lv="N3" aria-pressed="false"><span class="num">N3</span><span class="jpn">中級</span><span class="cnt" id="h-N3">0 / 0</span><span class="bar2"><i id="hb-N3"></i></span></button>
+      <button class="lvcol" data-lv="N2" aria-pressed="false"><span class="num">N2</span><span class="jpn">中上級</span><span class="cnt" id="h-N2">0 / 0</span><span class="bar2"><i id="hb-N2"></i></span></button>
+    </div>
   </header>
 
   <div class="bar">
@@ -549,7 +557,7 @@ N2: {
 };
 
 const LEVELS=["N5","N4","N3","N2"];
-const TAGS={N5:"Beginner",N4:"Lower intermediate",N3:"Intermediate",N2:"Upper intermediate"};
+const TAGS={N5:"入門 · Beginner",N4:"初級 · Lower intermediate",N3:"中級 · Intermediate",N2:"中上級 · Upper intermediate"};
 const KEY="jlpt-checklist-v1";
 let done={};
 try{done=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){done={}}
@@ -583,6 +591,7 @@ function render(){
     }
     if(lvHtml) html+=`<section class="level"><h2>${lv}<span class="tag">${TAGS[lv]}</span></h2>${lvHtml}</section>`;
   }
+  document.querySelectorAll(".lvcol").forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.lv===level)));
   main.innerHTML=html||`<p class="empty">${hideDone?"Everything here is done. Turn off “Hide done” to review.":"No grammar point matches that search."}</p>`;
   progress();
 }
@@ -592,6 +601,8 @@ function progress(){
     for(const [grp,items] of Object.entries(DATA[lv])) items.forEach((_,i)=>{total++; if(done[`${lv}-${grp}-${i}`.replace(/[^\w-]/g,"_")]) d++;});
     document.getElementById("c-"+lv).textContent=`${d} / ${total}`;
     document.getElementById("f-"+lv).style.width=(total?d/total*100:0)+"%";
+    document.getElementById("h-"+lv).textContent=`${d} / ${total}`;
+    document.getElementById("hb-"+lv).style.width=(total?d/total*100:0)+"%";
   }
 }
 document.getElementById("list").addEventListener("change",e=>{
@@ -602,6 +613,10 @@ document.getElementById("list").addEventListener("change",e=>{
 });
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
   level=b.dataset.lv; document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed",t===b)); saveUI(); render();
+}));
+document.querySelectorAll(".lvcol").forEach(c=>c.addEventListener("click",()=>{
+  const t=document.querySelector(`.tab[data-lv="${c.dataset.lv}"]`); if(t) t.click();
+  document.getElementById("list").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
 }));
 const hideBtn=document.getElementById("hide");
 hideBtn.addEventListener("click",()=>{hideDone=!hideDone; hideBtn.setAttribute("aria-pressed",hideDone); saveUI(); render();});
@@ -614,5 +629,6 @@ document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed",t.dat
 hideBtn.setAttribute("aria-pressed",hideDone);
 render();
 </script>
+<script src="timer.js" defer></script>
 </body>
 </html>

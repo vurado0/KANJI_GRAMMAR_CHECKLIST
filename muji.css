@@ -1,0 +1,136 @@
+/* 無印 theme — shared by every page, loaded after each page's own <style>.
+   Palette: MUJI burgundy on unbleached paper, natural tones per JLPT level.
+   Type: Noto Sans JP for all Japanese and body text, Oswald for numerals and labels.
+   Layout: square corners, thin rules, generous white space. */
+
+:root{
+  --bg:#f4f2ee; --surface:#ffffff; --fg:#3b3936; --muted:#86817a; --line:#e3dfd8;
+  --muji:#7f0019; --muji-ink:#ffffff; --muji-soft:#f4e7e9;
+  --ai:#7f0019; --ai-soft:#f4e7e9;          /* primary + N4 */
+  --shu:#9b7a4f; --shu-soft:#f3ece2;        /* N5: kraft */
+  --murasaki:#3f4c5e; --murasaki-soft:#e8ebef; /* N3: ink navy */
+  --moegi:#5e6b45;                          /* N2: moss */
+  --done:#aaa49b; --band:#f0ede7;
+  --hero-bg:#7f0019; --hero-fg:#ffffff; --hero-muted:#e6c3c9; --hero-line:rgba(255,255,255,.28);
+  --f-body:"Noto Sans JP","Helvetica Neue",Arial,"Hiragino Sans",sans-serif;
+  --f-jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-display:"Noto Sans JP","Hiragino Sans",sans-serif;
+  --f-num:"Oswald","Arial Narrow","Helvetica Neue",sans-serif;
+  --r:2px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1918; --surface:#242120; --fg:#ebe6df; --muted:#a39d95; --line:#38332f;
+  --muji:#d0606f; --muji-ink:#1b1918; --muji-soft:#3a2226;
+  --ai:#d0606f; --ai-soft:#3a2226;
+  --shu:#c9a676; --shu-soft:#3a3226;
+  --murasaki:#9fb0c6; --murasaki-soft:#2a3038;
+  --moegi:#a3b383;
+  --done:#6f6a64; --band:#2a2725;
+  --hero-bg:#5a0d1a; --hero-fg:#f6eeee; --hero-muted:#d6a9b0; --hero-line:rgba(255,255,255,.2);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1918; --surface:#242120; --fg:#ebe6df; --muted:#a39d95; --line:#38332f;
+  --muji:#d0606f; --muji-ink:#1b1918; --muji-soft:#3a2226;
+  --ai:#d0606f; --ai-soft:#3a2226;
+  --shu:#c9a676; --shu-soft:#3a3226;
+  --murasaki:#9fb0c6; --murasaki-soft:#2a3038;
+  --moegi:#a3b383;
+  --done:#6f6a64; --band:#2a2725;
+  --hero-bg:#5a0d1a; --hero-fg:#f6eeee; --hero-muted:#d6a9b0; --hero-line:rgba(255,255,255,.2);
+  color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+
+/* ---------- site header: brand mark + quiet nav ---------- */
+nav.site{align-items:center;gap:2px 6px;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+nav.site::before{content:"文法";flex:none;width:40px;height:40px;margin-right:10px;display:grid;place-items:center;
+  background:var(--muji);color:var(--muji-ink);font:700 14px var(--f-jp);letter-spacing:.04em;border-radius:var(--r)}
+nav.site a{font:500 13px var(--f-body);color:var(--muted);padding:6px 8px;border-radius:0;border-bottom:2px solid transparent}
+nav.site a:hover{background:none;color:var(--fg)}
+nav.site a[aria-current="page"]{background:none;color:var(--fg);border-bottom-color:var(--muji)}
+nav.site a.done .tick{color:var(--muji)}
+
+/* ---------- type ---------- */
+h1,header h1{font-family:var(--f-display);font-weight:700;letter-spacing:.04em}
+h1 span,header h1 span{color:var(--muji)}
+.lead,header p{color:var(--muted)}
+h2{font-family:var(--f-num);font-weight:500;letter-spacing:.14em}
+.level>h2{font-family:var(--f-num);font-weight:600;font-size:2rem;letter-spacing:.04em;color:var(--fg);
+  border-bottom:1px solid var(--line);padding-bottom:6px;align-items:baseline}
+.level>h2 .tag{font:500 13px var(--f-jp);letter-spacing:.12em;color:var(--muji);text-transform:none}
+.group h3{font-family:var(--f-num);font-weight:500;letter-spacing:.16em;font-size:12px}
+h3{letter-spacing:.03em}
+.form,.jp,.vk,.rt td,.ct td{font-family:var(--f-jp)}
+
+/* ---------- square, quiet surfaces ---------- */
+ul,.card,.panel,.big,input[type=search],select.tool,.tool,.tab,.chip,.practice,nav.toc a,.box{border-radius:var(--r)}
+.card,ul,.panel,.big{box-shadow:none;border-color:var(--line)}
+.tab{font:500 13px var(--f-num);letter-spacing:.12em;padding:7px 16px}
+.tab[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--muji);border-color:var(--muji);color:var(--muji-ink)}
+.tool[aria-pressed="true"]{color:var(--muji);border-color:var(--muji)}
+.practice{color:var(--muji);border-color:var(--muji);font:500 13px var(--f-body);letter-spacing:.04em}
+.practice:hover{background:var(--muji);color:var(--muji-ink)}
+.practice.done{color:var(--muted);border-color:var(--line)}
+.practice.done .tick{color:var(--muji)}
+.chk:checked+label .box{background:var(--muji);border-color:var(--muji)}
+.box svg{stroke:var(--muji-ink)}
+.track{height:3px;border-radius:0;background:var(--line)}
+.fill{border-radius:0}
+.p .lbl b{font-family:var(--f-num);font-weight:500;letter-spacing:.1em}
+.p .lbl span{font-family:var(--f-num);letter-spacing:.06em}
+nav.toc a:hover{border-color:var(--muji);color:var(--muji)}
+.jp b{color:var(--muji)}
+.k{color:var(--muji)}
+.chip{background:var(--muji-soft)}
+a{color:var(--muji)}
+:focus-visible{outline-color:var(--muji)!important}
+
+/* ---------- main-page hero (MUJI-style burgundy panel) ---------- */
+.hero{background:var(--hero-bg);color:var(--hero-fg);padding:28px 24px 26px;border-radius:var(--r);display:grid;gap:18px}
+.hero .kicker{display:flex;align-items:center;gap:12px;font:500 12px var(--f-num);letter-spacing:.24em;color:var(--hero-muted)}
+.hero .kicker .mark{width:34px;height:34px;display:grid;place-items:center;background:var(--hero-fg);color:var(--hero-bg);font:700 12px var(--f-jp);letter-spacing:.02em;border-radius:var(--r)}
+.hero h1{margin:0;color:var(--hero-fg);font:700 clamp(1.7rem,5vw,2.5rem)/1.25 var(--f-display);letter-spacing:.06em}
+.hero p{margin:0;color:var(--hero-muted);max-width:56ch;font-size:14px}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hero-line);padding-top:16px;gap:12px}
+@media (max-width:560px){.levels{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}}
+.lvcol{all:unset;cursor:pointer;display:grid;gap:4px;align-content:start;padding:2px 0}
+.lvcol .num{font:600 clamp(2rem,6vw,2.8rem)/1 var(--f-num);letter-spacing:.02em}
+.lvcol .jpn{font:700 13px var(--f-jp);letter-spacing:.14em}
+.lvcol .cnt{font:400 12px var(--f-num);letter-spacing:.08em;color:var(--hero-muted)}
+.lvcol .bar2{height:2px;background:var(--hero-line);margin-top:4px}
+.lvcol .bar2 i{display:block;height:100%;width:0;background:var(--hero-fg);transition:width .3s}
+.lvcol:hover .num,.lvcol[aria-pressed="true"] .num{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.lvcol:focus-visible{outline:2px solid var(--hero-fg)!important;outline-offset:4px}
+@media (prefers-reduced-motion:reduce){.lvcol .bar2 i{transition:none}}
+
+/* ---------- timer widget ---------- */
+.tmr-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:8px;
+  background:var(--muji);color:var(--muji-ink);border:0;border-radius:var(--r);padding:10px 14px;font:500 13px var(--f-jp);letter-spacing:.08em;cursor:pointer}
+.tmr-btn .t{font:500 15px var(--f-num);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.tmr-btn .t:empty{display:none}
+.tmr-panel{position:fixed;right:16px;bottom:calc(68px + env(safe-area-inset-bottom,0px));z-index:50;width:min(340px,calc(100vw - 32px));
+  background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.12);display:grid}
+.tmr-tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.tmr-tabs button{all:unset;cursor:pointer;text-align:center;padding:11px 4px;font:500 12px var(--f-jp);letter-spacing:.08em;color:var(--muted);border-bottom:2px solid transparent}
+.tmr-tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--muji)}
+.tmr-tabs button:focus-visible{outline:2px solid var(--muji);outline-offset:-2px}
+.tmr-body{padding:18px 18px 16px;display:grid;gap:14px}
+.tmr-phase{display:flex;justify-content:space-between;align-items:baseline;font:700 13px var(--f-jp);letter-spacing:.12em}
+.tmr-phase small{font:400 11px var(--f-num);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.tmr-time{font:500 clamp(3rem,14vw,4.2rem)/1 var(--f-num);letter-spacing:.04em;text-align:center;font-variant-numeric:tabular-nums}
+.tmr-dots{display:flex;justify-content:center;gap:6px}
+.tmr-dots i{width:8px;height:8px;border:1px solid var(--muji);border-radius:50%}
+.tmr-dots i.on{background:var(--muji)}
+.tmr-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tmr-row button,.tmr-row input{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 12px;border-radius:var(--r);cursor:pointer}
+.tmr-row button.main{background:var(--muji);border-color:var(--muji);color:var(--muji-ink);min-width:92px}
+.tmr-row button.pre{font-family:var(--f-num);letter-spacing:.06em;padding:6px 10px}
+.tmr-row button.pre[aria-pressed="true"]{border-color:var(--muji);color:var(--muji)}
+.tmr-row input{width:72px;cursor:text;text-align:center}
+.tmr-row label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.tmr-set{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.tmr-set label{display:grid;gap:2px;font-size:11px;color:var(--muted);letter-spacing:.04em}
+.tmr-set input{font:500 14px var(--f-num);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 8px;border-radius:var(--r);width:100%}
+.tmr-laps{max-height:120px;overflow:auto;margin:0;padding:0;list-style:none;border:0;background:none;font:400 13px var(--f-num);letter-spacing:.06em}
+.tmr-laps li{display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid var(--line)}
+.tmr-panel button:focus-visible,.tmr-panel input:focus-visible,.tmr-btn:focus-visible{outline:2px solid var(--muji);outline-offset:2px}

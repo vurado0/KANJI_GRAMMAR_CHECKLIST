@@ -18,6 +18,10 @@ Going through a textbook once doesn't mean every point has stuck. This site list
 | [N4 gaps](https://bunpou-check-list.vercel.app/n4-open-points.html) | The same for the 22 open N4 points, including a keigo table. | Done ✓ |
 | [N3 gaps](https://bunpou-check-list.vercel.app/n3-open-points.html) | The 69 open N3 points in more depth: meaning, how each one attaches (Form), pitfalls (Notes) and one example for every variation (Uses), 253 sentences in total. | In progress |
 
+Every page has a **study timer** (bottom right): Pomodoro with focus / short / long breaks, a countdown timer with presets, and a stopwatch with laps. A running timer keeps going when you switch pages.
+
+The design follows a quiet MUJI-inspired style: burgundy on unbleached paper, Noto Sans JP for Japanese text, Oswald for numbers, square corners and lots of white space.
+
 ## How I use it
 
 1. Go through a level on the checklist and tick every point I can use in my own sentence without looking it up.
@@ -38,6 +42,8 @@ n5-open-points.html    explanations for open N5 points
 n4-open-points.html    explanations for open N4 points
 n3-open-points.html    detailed explanations for open N3 points
 n3-checklist.html      redirect to index.html#n3 (old link)
+muji.css               shared theme for all pages
+timer.js               Pomodoro, countdown and stopwatch widget
 ```
 
 The N5 and N4 points come from two practice stories (京都の一日 and 大阪の新しい生活). Grammar lists differ between sources, so every level covers the core points rather than every list ever published.
