@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N5 Grammar – Open Points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same visual system as the checklist (index.html): narrow study column, grammar cards grouped by category */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2030; --muted:#5c6478; --line:#dde1ea;
+  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"IBM Plex Sans","Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-jp:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+a{color:var(--ai)}
+a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.back{font-size:13px;text-decoration:none}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0 0;text-wrap:balance}
+h1 span{color:var(--shu)}
+.lead{color:var(--muted);margin:6px 0 0;max-width:60ch}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+nav.toc a{font:500 13px var(--f-jp);text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 11px;border-radius:999px}
+nav.toc a:hover{border-color:var(--ai);color:var(--ai)}
+h2{font:600 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:34px 0 10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px;scroll-margin-top:16px}
+.card+.card{margin-top:12px}
+h3{font-family:var(--f-jp);font-weight:700;font-size:18px;margin:0}
+.card p{margin:0;max-width:65ch}
+ul.ex{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}
+ul.ex li{display:grid;gap:0;padding-left:12px;border-left:2px solid var(--ai-soft)}
+.jp{font-family:var(--f-jp);font-size:16px}
+.jp b{color:var(--ai);font-weight:700}
+.en{color:var(--muted);font-size:14px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+td:first-child{font-family:var(--f-jp);font-weight:700;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">← Back to the checklist</a>
+  <h1>N5 Grammar <span>Open Points</span></h1>
+  <p class="lead">The 12 N5 grammar points still unticked on the checklist, each with an explanation and three examples.</p>
+  <nav class="toc" aria-label="Grammar points">
+    <a href="#i-adj">い-adj</a><a href="#na-adj">な-adj</a><a href="#naru">くなる</a><a href="#adverb">〜く</a>
+    <a href="#ni-iku">に行く</a><a href="#tsumori">つもり</a><a href="#mae">前に</a><a href="#ato">後で</a>
+    <a href="#yori">より</a><a href="#momo">も〜も</a><a href="#deshou">でしょう</a><a href="#qwords">疑問詞</a>
+  </nav>
+
+  <h2>Adjectives</h2>
+  <section class="card" id="i-adj">
+    <h3>い-adjectives</h3>
+    <p>These end in い and change their own ending: 高い (present), 高くない (negative), 高かった (past), 高くなかった (past negative). Never say 高いでした. いい is irregular: よくない, よかった.</p>
+    <ul class="ex">
+      <li><span class="jp">このラーメンは<b>おいしい</b>です。</span><span class="en">This ramen is delicious.</span></li>
+      <li><span class="jp">昨日はとても<b>寒かった</b>です。</span><span class="en">It was very cold yesterday.</span></li>
+      <li><span class="jp">この部屋はあまり<b>広くない</b>です。</span><span class="en">This room isn't very big.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="na-adj">
+    <h3>な-adjectives</h3>
+    <p>These behave like nouns. They need な before a noun, and です or でした after them: 静かです, 静かじゃありません, 静かでした. Watch out for きれい and きらい: they end in い but are な-adjectives.</p>
+    <ul class="ex">
+      <li><span class="jp"><b>静かな</b>公園で本を読みました。</span><span class="en">I read a book in a quiet park.</span></li>
+      <li><span class="jp">この町は昔、<b>にぎやかでした</b>。</span><span class="en">This town used to be lively.</span></li>
+      <li><span class="jp">数学は<b>好きじゃありません</b>。</span><span class="en">I don't like math.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="naru">
+    <h3>〜くなる / 〜になる</h3>
+    <p>Both mean "to become". For い-adjectives, drop the い and add くなる. For な-adjectives and nouns, add になる.</p>
+    <ul class="ex">
+      <li><span class="jp">部屋が<b>暖かくなりました</b>。</span><span class="en">The room got warm.</span></li>
+      <li><span class="jp">日本語が<b>上手になりたい</b>です。</span><span class="en">I want to get good at Japanese.</span></li>
+      <li><span class="jp">弟は<b>医者になりました</b>。</span><span class="en">My younger brother became a doctor.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="adverb">
+    <h3>〜く (adverb)</h3>
+    <p>To describe how an action is done, change い to く. For な-adjectives, use に instead.</p>
+    <ul class="ex">
+      <li><span class="jp">毎朝<b>早く</b>起きます。</span><span class="en">I get up early every morning.</span></li>
+      <li><span class="jp">もっと<b>大きく</b>書いてください。</span><span class="en">Please write bigger.</span></li>
+      <li><span class="jp">部屋を<b>きれいに</b>掃除しました。</span><span class="en">I cleaned the room thoroughly.</span></li>
+    </ul>
+  </section>
+
+  <h2>Verb patterns</h2>
+  <section class="card" id="ni-iku">
+    <h3>stem + に行く</h3>
+    <p>"Go somewhere to do something". Take the ます-stem and add に plus 行く, 来る or 帰る. A する-noun can also go directly before に: 買い物に行く.</p>
+    <ul class="ex">
+      <li><span class="jp">友達とご飯を<b>食べに行きます</b>。</span><span class="en">I'm going to eat with friends.</span></li>
+      <li><span class="jp">日本へ日本語を<b>勉強しに来ました</b>。</span><span class="en">I came to Japan to study Japanese.</span></li>
+      <li><span class="jp">図書館へ本を<b>借りに行きました</b>。</span><span class="en">I went to the library to borrow books.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="tsumori">
+    <h3>〜つもり</h3>
+    <p>A plan you have already decided on. Use the dictionary form + つもりです. For the negative, use ないつもり.</p>
+    <ul class="ex">
+      <li><span class="jp">夏休みに日本へ<b>行くつもりです</b>。</span><span class="en">I plan to go to Japan in the summer holidays.</span></li>
+      <li><span class="jp">今日はお酒を<b>飲まないつもりです</b>。</span><span class="en">I don't plan to drink today.</span></li>
+      <li><span class="jp">週末は何を<b>するつもりですか</b>。</span><span class="en">What are you planning this weekend?</span></li>
+    </ul>
+  </section>
+  <section class="card" id="mae">
+    <h3>〜前に / 〜の前に</h3>
+    <p>"Before". Verbs always take the dictionary form, even when the sentence is in the past. Nouns take の前に. A time span + 前に means "… ago".</p>
+    <ul class="ex">
+      <li><span class="jp"><b>寝る前に</b>歯を磨きます。</span><span class="en">I brush my teeth before going to sleep.</span></li>
+      <li><span class="jp"><b>食事の前に</b>手を洗ってください。</span><span class="en">Please wash your hands before eating.</span></li>
+      <li><span class="jp"><b>三年前に</b>東京に来ました。</span><span class="en">I came to Tokyo three years ago.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="ato">
+    <h3>〜の後で</h3>
+    <p>"After". Nouns take の後で, and verbs take the た-form + 後で. Compare てから, which stresses that one action comes directly after the other.</p>
+    <ul class="ex">
+      <li><span class="jp"><b>授業の後で</b>、カフェに行きましょう。</span><span class="en">Let's go to a café after class.</span></li>
+      <li><span class="jp">宿題を<b>した後で</b>、テレビを見ました。</span><span class="en">I watched TV after doing my homework.</span></li>
+      <li><span class="jp"><b>仕事の後で</b>、ジムに行きます。</span><span class="en">I go to the gym after work.</span></li>
+    </ul>
+  </section>
+
+  <h2>Comparison</h2>
+  <section class="card" id="yori">
+    <h3>〜より</h3>
+    <p>"Than". In AはBより〜, A is the one with more of the quality.</p>
+    <ul class="ex">
+      <li><span class="jp">東京は<b>大阪より</b>大きいです。</span><span class="en">Tokyo is bigger than Osaka.</span></li>
+      <li><span class="jp">電車は<b>バスより</b>速いです。</span><span class="en">The train is faster than the bus.</span></li>
+      <li><span class="jp">今日は<b>昨日より</b>暖かいです。</span><span class="en">Today is warmer than yesterday.</span></li>
+    </ul>
+  </section>
+
+  <h2>Other</h2>
+  <section class="card" id="momo">
+    <h3>〜も〜も</h3>
+    <p>With a positive verb it means "both A and B". With a negative verb it means "neither A nor B". も replaces は, が and を, but is added after other particles: 東京にも大阪にも.</p>
+    <ul class="ex">
+      <li><span class="jp"><b>兄も姉も</b>学生です。</span><span class="en">My older brother and older sister are both students.</span></li>
+      <li><span class="jp"><b>肉も魚も</b>食べません。</span><span class="en">I eat neither meat nor fish.</span></li>
+      <li><span class="jp"><b>日曜日も月曜日も</b>休みです。</span><span class="en">Both Sunday and Monday are days off.</span></li>
+    </ul>
+  </section>
+  <section class="card" id="deshou">
+    <h3>〜でしょう</h3>
+    <p>"Probably". Add it to the plain form. With な-adjectives and nouns, drop だ. With rising intonation (でしょう？) it asks for agreement: "right?". The casual form is だろう.</p>
+    <ul class="ex">
+      <li><span class="jp">明日はたぶん<b>晴れるでしょう</b>。</span><span class="en">It will probably be sunny tomorrow.</span></li>
+      <li><span class="jp">田中さんはもう家に<b>帰ったでしょう</b>。</span><span class="en">Tanaka has probably gone home already.</span></li>
+      <li><span class="jp">この本、<b>おもしろいでしょう</b>？</span><span class="en">This book is interesting, right?</span></li>
+    </ul>
+  </section>
+  <section class="card" id="qwords">
+    <h3>Question words</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>なに / なん</td><td>what</td></tr>
+          <tr><td>だれ</td><td>who</td></tr>
+          <tr><td>どこ</td><td>where</td></tr>
+          <tr><td>いつ</td><td>when</td></tr>
+          <tr><td>どれ</td><td>which (out of three or more)</td></tr>
+          <tr><td>どちら</td><td>which (out of two)</td></tr>
+          <tr><td>いくら</td><td>how much</td></tr>
+          <tr><td>いくつ</td><td>how many, how old</td></tr>
+          <tr><td>どう</td><td>how</td></tr>
+          <tr><td>どうして</td><td>why</td></tr>
+          <tr><td>どんな</td><td>what kind of</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="ex">
+      <li><span class="jp">このかばんは<b>いくら</b>ですか。</span><span class="en">How much is this bag?</span></li>
+      <li><span class="jp"><b>どうして</b>昨日来なかったんですか。</span><span class="en">Why didn't you come yesterday?</span></li>
+      <li><span class="jp">日本の生活は<b>どう</b>ですか。</span><span class="en">How is life in Japan?</span></li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
