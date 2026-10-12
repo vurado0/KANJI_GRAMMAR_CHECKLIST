@@ -39,6 +39,7 @@
   --hero-bg:#5a0d1a; --hero-fg:#f6eeee; --hero-muted:#d6a9b0; --hero-line:rgba(255,255,255,.2);
   color-scheme:dark}
 
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);letter-spacing:.02em;-webkit-font-smoothing:antialiased}
 
 /* ---------- site header: brand mark + quiet nav ---------- */

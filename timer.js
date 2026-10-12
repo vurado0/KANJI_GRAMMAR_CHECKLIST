@@ -50,9 +50,9 @@
     <div class="tmr-dots" id="tmr-dots" aria-label="Focus sessions in this round"></div>
     <div class="tmr-row"><button class="main" id="tmr-pgo">Start</button><button id="tmr-pskip">Skip</button><button id="tmr-preset">Reset</button></div>
     <div class="tmr-set">
-      <label>Focus (min)<input type="number" id="tmr-sf" min="1" max="180"></label>
-      <label>Short (min)<input type="number" id="tmr-ss" min="1" max="60"></label>
-      <label>Long (min)<input type="number" id="tmr-sl" min="1" max="90"></label>
+      <label>Focus · min<input type="number" id="tmr-sf" min="1" max="180"></label>
+      <label>Short · min<input type="number" id="tmr-ss" min="1" max="60"></label>
+      <label>Long · min<input type="number" id="tmr-sl" min="1" max="90"></label>
     </div>
   </div>
   <div class="tmr-body" data-p="timer" hidden>
