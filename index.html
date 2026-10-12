@@ -34,6 +34,11 @@ header p{color:var(--muted);margin:6px 0 0;max-width:60ch}
 .tab{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 14px;border-radius:999px;cursor:pointer}
 .tab[aria-pressed="true"]{background:var(--ai);border-color:var(--ai);color:var(--bg)}
 .tab:focus-visible,.chk:focus-visible+label,.tool:focus-visible,input[type=search]:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
+nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
+nav.site a:hover{color:var(--fg);background:var(--surface)}
+nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+nav.site a:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
 .practice{margin-left:auto;font:600 14px var(--f-body);text-decoration:none;color:var(--shu);border:1px solid var(--shu);background:var(--surface);padding:7px 14px;border-radius:999px;white-space:nowrap}
 .practice:hover{background:var(--shu);color:var(--surface)}
 .practice:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
@@ -77,6 +82,11 @@ label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:11p
 <body>
 
 <div class="wrap">
+  <nav class="site" aria-label="Site">
+    <a href="./" aria-current="page">Checklist</a>
+    <a href="conjugations.html">Verb conjugation</a>
+    <a href="n5-open-points.html">N5 gaps</a>
+  </nav>
   <header>
     <h1>文法チェックリスト <span>N5 · N4</span></h1>
     <p>Every grammar point from the two stories (京都の一日 and 大阪の新しい生活). Tick a point once you can use it in your own sentence.</p>

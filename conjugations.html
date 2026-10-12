@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verb Conjugation Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same visual system as the checklist; wider column so the big table has room. Table: forms down, verbs across, both headers sticky */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2030; --muted:#5c6478; --line:#dde1ea;
+  --ai:#2b3f8f; --ai-soft:#e6eaf7; --shu:#c2412d; --shu-soft:#f8e6e2; --band:#eef0f5;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"IBM Plex Sans","Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-jp:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --shu-soft:#3a2420; --band:#202634; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2a; --fg:#e7e9f0; --muted:#9aa2b6; --line:#2c3342;
+  --ai:#8fa4ef; --ai-soft:#232c48; --shu:#ec7a63; --shu-soft:#3a2420; --band:#202634; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 64px}
+.narrow{max-width:760px}
+
+nav.site{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px}
+nav.site a{font:500 14px var(--f-body);text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:8px}
+nav.site a:hover{color:var(--fg);background:var(--surface)}
+nav.site a[aria-current="page"]{color:var(--ai);background:var(--ai-soft)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin:18px 0 0;text-wrap:balance}
+h1 span{color:var(--shu)}
+.lead{color:var(--muted);margin:6px 0 0;max-width:65ch}
+h2{font-family:var(--f-display);font-weight:800;font-size:1.4rem;margin:36px 0 4px}
+h2+p{color:var(--muted);margin:0 0 12px;max-width:65ch}
+
+/* rules */
+.rules{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:820px){.rules{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.panel h3{font:600 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0;padding:12px 14px;border-bottom:1px solid var(--line)}
+.scroll-x{overflow-x:auto}
+table.rt{border-collapse:collapse;width:100%;font-size:14px}
+.rt th,.rt td{text-align:left;padding:7px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.rt tr:last-child td{border-bottom:0}
+.rt th{font-weight:600;font-size:12px;color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+.rt td{font-family:var(--f-jp)}
+.rt td:first-child{font-family:var(--f-body);font-weight:600;white-space:nowrap}
+.te{display:grid;gap:0}
+.te div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);font-family:var(--f-jp)}
+.te div:last-child{border-bottom:0}
+.te b{color:var(--shu);font-weight:700}
+.te .ex{color:var(--muted)}
+.notes{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:6px;max-width:80ch}
+.notes li{padding-left:14px;position:relative;color:var(--fg)}
+.notes li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--shu)}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:4px 0 12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chips .lbl{font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.chip{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ai);border-color:var(--ai);color:var(--bg)}
+.practice{font:600 13px var(--f-body);border:1px solid var(--shu);color:var(--shu);background:var(--surface);padding:6px 12px;border-radius:999px;cursor:pointer}
+.practice[aria-pressed="true"]{background:var(--shu);color:var(--surface)}
+.hint{font-size:13px;color:var(--muted)}
+
+/* big table */
+.big{max-height:78vh;overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table.ct{border-collapse:separate;border-spacing:0;font-size:14px;min-width:100%}
+.ct th,.ct td{padding:7px 10px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);white-space:nowrap;text-align:left;vertical-align:middle}
+.ct thead th{position:sticky;top:0;z-index:2;background:var(--surface);font-weight:500}
+.ct thead tr.grp th{top:0;font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);height:30px}
+.ct thead tr.vb th{top:30px;box-shadow:0 1px 0 var(--line)}
+.ct .corner{left:0;z-index:4}
+.ct tbody th{position:sticky;left:0;z-index:1;background:var(--surface);font-weight:500;min-width:190px;box-shadow:1px 0 0 var(--line)}
+.ct tr.sec th{background:var(--band);font:600 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ai);padding-top:9px}
+.ct tr.sec td{background:var(--band)}
+.vk{font-family:var(--f-jp);font-weight:700;font-size:16px;display:block}
+.vr{font-family:var(--f-jp);font-size:12px;color:var(--muted);display:block}
+.ve{font-size:12px;color:var(--muted);display:block}
+.rl{display:flex;align-items:baseline;gap:8px}
+.rl .name{font-weight:600}
+.rl .lv{font:600 10px var(--f-body);letter-spacing:.06em;padding:1px 6px;border-radius:4px}
+.lv.N5{background:var(--shu-soft);color:var(--shu)}
+.lv.N4{background:var(--ai-soft);color:var(--ai)}
+.gl{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.ct td{font-family:var(--f-jp);font-size:15px}
+.ct td.c{cursor:default}
+.ct tbody tr:not(.sec):hover td,.ct tbody tr:not(.sec):hover th{background:var(--ai-soft)}
+.godan-last{border-right:2px solid var(--line)}
+ruby rt{font-size:.55em;color:var(--muted)}
+.practicing td.c{cursor:pointer}
+.practicing td.c:not(.shown) .v{filter:blur(6px);opacity:.5;user-select:none}
+.practicing td.c:not(.shown){background:repeating-linear-gradient(-45deg,transparent 0 6px,var(--band) 6px 7px)}
+.foot{margin-top:28px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site" aria-label="Site">
+    <a href="./">Checklist</a>
+    <a href="conjugations.html" aria-current="page">Verb conjugation</a>
+    <a href="n5-open-points.html">N5 gaps</a>
+  </nav>
+
+  <h1>活用表 <span>Verb Conjugation</span></h1>
+  <p class="lead">Every N5 and N4 verb form for all verb types: plain and polite, present and past, positive and negative, plus て-form, potential, passive, causative, conditionals and commands. Japanese has two tenses: non-past (present and future) and past.</p>
+
+  <h2>How each form is built</h2>
+  <p>う-verbs (godan) shift the last kana along its row: あ, い, え, お. る-verbs (ichidan) drop る and add the ending. する and 来る are irregular.</p>
+  <div class="rules">
+    <div class="panel">
+      <h3>Building rules</h3>
+      <div class="scroll-x">
+      <table class="rt">
+        <thead><tr><th>Form</th><th>う-verb (書く)</th><th>る-verb (食べる)</th><th>する</th><th>来る</th></tr></thead>
+        <tbody>
+          <tr><td>ない (negative)</td><td>あ-row + ない → 書かない</td><td>drop る + ない → 食べない</td><td>しない</td><td>こない</td></tr>
+          <tr><td>ます (polite)</td><td>い-row + ます → 書きます</td><td>drop る + ます → 食べます</td><td>します</td><td>きます</td></tr>
+          <tr><td>て / た</td><td>see て-form rules → 書いて</td><td>drop る + て → 食べて</td><td>して</td><td>きて</td></tr>
+          <tr><td>Volitional</td><td>お-row + う → 書こう</td><td>drop る + よう → 食べよう</td><td>しよう</td><td>こよう</td></tr>
+          <tr><td>Potential</td><td>え-row + る → 書ける</td><td>drop る + られる → 食べられる</td><td>できる</td><td>こられる</td></tr>
+          <tr><td>Passive</td><td>あ-row + れる → 書かれる</td><td>drop る + られる → 食べられる</td><td>される</td><td>こられる</td></tr>
+          <tr><td>Causative</td><td>あ-row + せる → 書かせる</td><td>drop る + させる → 食べさせる</td><td>させる</td><td>こさせる</td></tr>
+          <tr><td>ば conditional</td><td>え-row + ば → 書けば</td><td>drop る + れば → 食べれば</td><td>すれば</td><td>くれば</td></tr>
+          <tr><td>Command</td><td>え-row → 書け</td><td>drop る + ろ → 食べろ</td><td>しろ</td><td>こい</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>て-form for う-verbs</h3>
+      <div class="te">
+        <div><b>う つ る</b><span>→ って <span class="ex">買って 待って 帰って</span></span></div>
+        <div><b>む ぶ ぬ</b><span>→ んで <span class="ex">読んで 遊んで 死んで</span></span></div>
+        <div><b>く</b><span>→ いて <span class="ex">書いて</span></span></div>
+        <div><b>ぐ</b><span>→ いで <span class="ex">泳いで</span></span></div>
+        <div><b>す</b><span>→ して <span class="ex">話して</span></span></div>
+        <div><b>行く</b><span>→ 行って <span class="ex">the one exception</span></span></div>
+      </div>
+    </div>
+  </div>
+  <ul class="notes">
+    <li>た-form = て-form with て→た and で→だ: 書いて → 書いた, 読んで → 読んだ.</li>
+    <li>る-verbs end in -iru or -eru (見る, 食べる). Some look the same but are う-verbs: 帰る, 入る, 走る, 知る, 切る, 要る.</li>
+    <li>Verbs ending in う use わ for the negative, passive and causative: 買わない, not 買あない.</li>
+    <li>ある is irregular in the negative: ない, not あらない.</li>
+    <li>In casual speech, る-verb potentials often drop ら: 食べれる, 見れる.</li>
+    <li>Causative-passive of う-verbs is usually shortened: 書かされる (from 書かせられる). Verbs ending in す keep the long form: 話させられる.</li>
+  </ul>
+
+  <h2>Conjugation table</h2>
+  <p>Forms run down, verbs across. Practice mode hides the answers; tap a cell to reveal it.</p>
+  <div class="controls">
+    <div class="chips" role="group" aria-label="Verb type">
+      <span class="lbl">Verbs</span>
+      <button class="chip" id="g-all" data-g="all" aria-pressed="true">All</button>
+      <button class="chip" id="g-godan" data-g="godan" aria-pressed="false">う-verbs</button>
+      <button class="chip" id="g-ichidan" data-g="ichidan" aria-pressed="false">る-verbs</button>
+      <button class="chip" id="g-irr" data-g="irr" aria-pressed="false">Irregular</button>
+    </div>
+    <div class="chips" role="group" aria-label="JLPT level">
+      <span class="lbl">Level</span>
+      <button class="chip" id="l-all" data-l="all" aria-pressed="true">All</button>
+      <button class="chip" id="l-n5" data-l="N5" aria-pressed="false">N5</button>
+      <button class="chip" id="l-n4" data-l="N4" aria-pressed="false">N4</button>
+    </div>
+    <button class="practice" id="practice" aria-pressed="false">Practice mode</button>
+    <button class="chip" id="reveal" hidden>Show all</button>
+  </div>
+  <div class="big" id="big"><table class="ct" id="ct"></table></div>
+  <p class="foot">来る changes its reading by form (く / こ / き); the small kana above 来 shows which.</p>
+</div>
+
+<script>
+const R={"う":["わ","い","え","お"],"く":["か","き","け","こ"],"ぐ":["が","ぎ","げ","ご"],"す":["さ","し","せ","そ"],"つ":["た","ち","て","と"],"ぬ":["な","に","ね","の"],"ぶ":["ば","び","べ","ぼ"],"む":["ま","み","め","も"],"る":["ら","り","れ","ろ"]};
+const TE={"う":"って","つ":"って","る":"って","ぬ":"んで","ぶ":"んで","む":"んで","く":"いて","ぐ":"いで","す":"して"};
+const toTa=t=>t.replace(/て$/,"た").replace(/で$/,"だ");
+
+function godan(dict,iku){
+  const s=dict.slice(0,-1), e=dict.slice(-1), r=R[e];
+  const te=iku? s+"って" : s+TE[e];
+  return {dict,a:s+r[0],i:s+r[1],te,ta:toTa(te),vol:s+r[3]+"う",pot:s+r[2]+"る",pass:s+r[0]+"れる",caus:s+r[0]+"せる",
+    cp:e==="す"? s+r[0]+"せられる" : s+r[0]+"される",ba:s+r[2]+"ば",imp:s+r[2]};
+}
+function ichidan(dict){
+  const s=dict.slice(0,-1);
+  return {dict,a:s,i:s,te:s+"て",ta:s+"た",vol:s+"よう",pot:s+"られる",pass:s+"られる",caus:s+"させる",cp:s+"させられる",ba:s+"れば",imp:s+"ろ"};
+}
+const K=r=>`<ruby>来<rt>${r}</rt></ruby>`;
+const SURU={dict:"する",a:"し",i:"し",te:"して",ta:"した",vol:"しよう",pot:"できる",pass:"される",caus:"させる",cp:"させられる",ba:"すれば",imp:"しろ"};
+const KURU={dict:K("く")+"る",a:K("こ"),i:K("き"),te:K("き")+"て",ta:K("き")+"た",vol:K("こ")+"よう",pot:K("こ")+"られる",pass:K("こ")+"られる",caus:K("こ")+"させる",cp:K("こ")+"させられる",ba:K("く")+"れば",imp:K("こ")+"い"};
+
+const VERBS=[
+  {g:"godan",k:"買う",r:"かう",en:"buy",f:godan("買う")},
+  {g:"godan",k:"書く",r:"かく",en:"write",f:godan("書く")},
+  {g:"godan",k:"泳ぐ",r:"およぐ",en:"swim",f:godan("泳ぐ")},
+  {g:"godan",k:"話す",r:"はなす",en:"speak",f:godan("話す")},
+  {g:"godan",k:"待つ",r:"まつ",en:"wait",f:godan("待つ")},
+  {g:"godan",k:"死ぬ",r:"しぬ",en:"die",f:godan("死ぬ")},
+  {g:"godan",k:"遊ぶ",r:"あそぶ",en:"play",f:godan("遊ぶ")},
+  {g:"godan",k:"読む",r:"よむ",en:"read",f:godan("読む")},
+  {g:"godan",k:"帰る",r:"かえる",en:"go home",f:godan("帰る")},
+  {g:"ichidan",k:"食べる",r:"たべる",en:"eat",f:ichidan("食べる")},
+  {g:"ichidan",k:"見る",r:"みる",en:"see",f:ichidan("見る")},
+  {g:"irr",k:"する",r:"する",en:"do",f:SURU},
+  {g:"irr",k:"来る",r:"くる",en:"come",f:KURU},
+  {g:"irr",k:"行く",r:"いく",en:"go",f:godan("行く",true)}
+];
+const GROUPS=[["godan","う-verbs (godan)"],["ichidan","る-verbs (ichidan)"],["irr","Irregular & special"]];
+
+const ROWS=[
+ ["Plain",[
+  ["Present / future","does, will do","N5",f=>f.dict],
+  ["Negative","doesn't do","N5",f=>f.a+"ない"],
+  ["Past","did","N5",f=>f.ta],
+  ["Past negative","didn't do","N5",f=>f.a+"なかった"]]],
+ ["Polite",[
+  ["Present / future","does, will do","N5",f=>f.i+"ます"],
+  ["Negative","doesn't do","N5",f=>f.i+"ません"],
+  ["Past","did","N5",f=>f.i+"ました"],
+  ["Past negative","didn't do","N5",f=>f.i+"ませんでした"]]],
+ ["Progressive & state",[
+  ["〜ている","is doing","N5",f=>f.te+"いる"],
+  ["〜ていない","isn't doing, hasn't yet","N5",f=>f.te+"いない"],
+  ["〜ていた","was doing","N5",f=>f.te+"いた"],
+  ["〜ています","is doing (polite)","N5",f=>f.te+"います"],
+  ["〜ていました","was doing (polite)","N5",f=>f.te+"いました"]]],
+ ["Connecting",[
+  ["て-form","and, then","N5",f=>f.te],
+  ["ます-stem","base for ます, たい, ながら","N5",f=>f.i],
+  ["〜てから","after doing","N5",f=>f.te+"から"],
+  ["〜ながら","while doing","N5",f=>f.i+"ながら"],
+  ["〜ないで","without doing","N4",f=>f.a+"ないで"]]],
+ ["Wanting & inviting",[
+  ["〜たい","want to do","N5",f=>f.i+"たい"],
+  ["〜たくない","don't want to do","N5",f=>f.i+"たくない"],
+  ["〜ましょう","let's do","N5",f=>f.i+"ましょう"],
+  ["〜ませんか","won't you do?","N5",f=>f.i+"ませんか"],
+  ["Volitional","let's do (plain)","N4",f=>f.vol]]],
+ ["Requests & commands",[
+  ["〜てください","please do","N5",f=>f.te+"ください"],
+  ["〜ないでください","please don't","N5",f=>f.a+"ないでください"],
+  ["Command","do it!","N4",f=>f.imp],
+  ["Prohibition","don't!","N4",f=>f.dict+"な"]]],
+ ["Obligation & permission",[
+  ["〜なければならない","must do","N5",f=>f.a+"なければならない"],
+  ["〜てもいい","may do","N5",f=>f.te+"もいい"],
+  ["〜てはいけない","must not do","N5",f=>f.te+"はいけない"]]],
+ ["Ability & voice",[
+  ["Potential","can do","N4",f=>f.pot],
+  ["Potential negative","can't do","N4",f=>f.pot.slice(0,-1)+"ない"],
+  ["Passive","is done (to)","N4",f=>f.pass],
+  ["Causative","makes / lets do","N4",f=>f.caus],
+  ["Causative-passive","is made to do","N4",f=>f.cp]]],
+ ["Conditionals",[
+  ["〜ば","if","N4",f=>f.ba],
+  ["〜なければ","if not","N4",f=>f.a+"なければ"],
+  ["〜たら","if, when","N4",f=>f.ta+"ら"],
+  ["〜なかったら","if not","N4",f=>f.a+"なかったら"]]],
+ ["Experience & aspect",[
+  ["〜たことがある","have done before","N5",f=>f.ta+"ことがある"],
+  ["〜ておく","do in advance","N4",f=>f.te+"おく"],
+  ["〜てしまう","end up doing, finish","N4",f=>f.te+"しまう"],
+  ["〜てみる","try doing","N4",f=>f.te+"みる"]]]
+];
+
+let grp="all", lvl="all", practice=false;
+try{const s=JSON.parse(localStorage.getItem("conj-ui")||"{}"); if(s.grp)grp=s.grp; if(s.lvl)lvl=s.lvl;}catch(e){}
+const saveUI=()=>{try{localStorage.setItem("conj-ui",JSON.stringify({grp,lvl}))}catch(e){}};
+
+function render(){
+  const verbs=VERBS.filter(v=>grp==="all"||v.g===grp);
+  const lastGodan=verbs.map(v=>v.g).lastIndexOf("godan");
+  const lastIchi=verbs.map(v=>v.g).lastIndexOf("ichidan");
+  const sep=i=>(i===lastGodan&&lastGodan<verbs.length-1)||(i===lastIchi&&lastIchi<verbs.length-1)?' class="godan-last"':'';
+  let h='<thead><tr class="grp"><th class="corner" rowspan="2" style="z-index:5;vertical-align:bottom">Form</th>';
+  for(const [g,name] of GROUPS){const n=verbs.filter(v=>v.g===g).length; if(n) h+=`<th colspan="${n}">${name}</th>`;}
+  h+='</tr><tr class="vb">';
+  verbs.forEach((v,i)=>{h+=`<th${sep(i)}><span class="vk">${v.k}</span><span class="vr">${v.r}</span><span class="ve">${v.en}</span></th>`});
+  h+='</tr></thead><tbody>';
+  for(const [sec,rows] of ROWS){
+    const rs=rows.filter(r=>lvl==="all"||r[2]===lvl); if(!rs.length) continue;
+    h+=`<tr class="sec"><th>${sec}</th>${verbs.map((v,i)=>`<td${sep(i)}></td>`).join("")}</tr>`;
+    for(const [name,gloss,lv,fn] of rs){
+      h+=`<tr><th><span class="rl"><span class="name">${name}</span><span class="lv ${lv}">${lv}</span></span><span class="gl">${gloss}</span></th>`;
+      verbs.forEach((v,i)=>{const c=sep(i)?' godan-last':''; h+=`<td class="c${c}"><span class="v">${fn(v.f)}</span></td>`});
+      h+='</tr>';
+    }
+  }
+  h+='</tbody>';
+  document.getElementById("ct").innerHTML=h;
+}
+function setPressed(sel,attr,val){document.querySelectorAll(sel).forEach(b=>b.setAttribute("aria-pressed",b.dataset[attr]===val))}
+document.querySelectorAll("[data-g]").forEach(b=>b.addEventListener("click",()=>{grp=b.dataset.g;setPressed("[data-g]","g",grp);saveUI();render()}));
+document.querySelectorAll("[data-l]").forEach(b=>b.addEventListener("click",()=>{lvl=b.dataset.l;setPressed("[data-l]","l",lvl);saveUI();render()}));
+const pBtn=document.getElementById("practice"), rBtn=document.getElementById("reveal"), big=document.getElementById("big");
+pBtn.addEventListener("click",()=>{practice=!practice;pBtn.setAttribute("aria-pressed",practice);big.classList.toggle("practicing",practice);rBtn.hidden=!practice;big.querySelectorAll(".shown").forEach(c=>c.classList.remove("shown"))});
+rBtn.addEventListener("click",()=>big.querySelectorAll("td.c").forEach(c=>c.classList.add("shown")));
+big.addEventListener("click",e=>{if(!practice)return;const td=e.target.closest("td.c");if(td)td.classList.toggle("shown")});
+setPressed("[data-g]","g",grp); setPressed("[data-l]","l",lvl);
+render();
+</script>
+</body>
+</html>
